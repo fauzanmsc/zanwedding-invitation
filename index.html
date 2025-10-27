@@ -1,0 +1,397 @@
+<!--
+Project: Wedding Invitation - Complete (index.html, style.css, script.js)
+Files included below. Save as separate files: index.html, style.css, script.js
+Replace music.mp3 and gallery images with your own files.
+-->
+
+<!-- index.html -->
+<!doctype html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Undangan — Andi & Sari</title>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Cormorant:wght@400;500;600;700&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- background outside frame (image or solid color) -->
+    <div id="page-bg" class="page-bg" aria-hidden="true"></div>
+
+    <!-- loader (fullscreen) -->
+    <div id="loader" class="loader" role="status" aria-live="polite">
+        <div class="loader-inner">
+            <div class="loader-heart"><i class="fa-solid fa-heart"></i></div>
+            <!-- <div class="loader-text">Andi &amp; Sari • 25 Desember 2025</div> -->
+        </div>
+    </div>
+
+    <!-- app stage -->
+    <div class="stage">
+        <div id="frame" class="frame" role="application" aria-label="Undangan Pernikahan">
+
+            <section id="halamancover" class="cover section visible">
+                <img src="asset/img/cover-bg.png" alt="Background" class="wi-cover-background">
+                <img src="asset/img/leaf-left.png" alt="Dekorasi Kiri" class="leaf left">
+                <img src="asset/img/leaf-right.png" alt="Dekorasi Kanan" class="leaf right">
+                <div class="zi-overlay-section"></div>
+                <div class="cover-inner">
+                    <div class="text-cover-01">WEDDING INVITATION</div>
+                    <div class="text-cover-02">Ulla & Riska</div>
+                    <div class="text-cover-03">SAVE THE DATE</div>
+                    <div style="margin: 10px 0;">
+                        <div class="text-cover-04">Kepada Yth.<br>Bapak/Ibu/Saudara/i</div>
+                        <div id="guestName" class="guest-name">Muhammad Fauzan</div>
+                    </div>
+                    <div class="buka-undangan">
+                        <button id="openBtn">
+                            <i class='fa-solid fa-envelope-open-text'></i> Buka Undangan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tombol Musik Floating -->
+                <div id="music-btn" class="music-active">
+                    <i class="fas fa-music"></i>
+                </div>
+
+            </section>
+
+
+            <!-- Sections container (all sections are full frame) -->
+            <main id="sections" class="sections">
+
+                <div class="inner-section">
+                    <!-- 2 Quotes -->
+                    <section id="quotes" class="page section">
+                        <img src="asset/img/section-bg-01.png" alt="Background" class="wi-cover-background">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Quotes</h2>
+                                <p class="muted">"Cinta sejati tumbuh dari kebersamaan"</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 3 Live -->
+                    <section id="live" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Live</h2>
+                                <p class="muted">Live streaming akan tersedia di hari H.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 4 Salam -->
+                    <section id="salam" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Salam</h2>
+                                <p class="muted">Wassalamu'alaikum warahmatullahi wabarakatuh.</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 5 Couple -->
+                    <section id="couple" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Mempelai</h2>
+                                <div class="couple-card">
+                                    <div class="avatar">Foto</div>
+                                    <div class="info">
+                                        <h3>Andi &amp; Sari</h3>
+                                        <p class="muted">Dua insan, satu ikrar.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 6 Akad -->
+                    <section id="akad" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Akad</h2>
+                                <p><strong>25 Desember 2025 • 09:00 WITA</strong><br>Masjid Agung Contoh</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 7 Resepsi -->
+                    <section id="resepsi" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Resepsi</h2>
+                                <p><strong>25 Desember 2025 • 11:30 WITA</strong><br>Gedung Serbaguna Contoh</p>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- 8 RSVP -->
+                    <section id="rsvp" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>RSVP - Konfirmasi Kehadiran</h2>
+                                <form id="rsvpForm" class="form card">
+                                    <label for="r-name">Nama</label>
+                                    <input id="r-name" name="name" type="text" placeholder="Nama lengkap" required>
+
+                                    <label for="r-attend">Kehadiran</label>
+                                    <select id="r-attend" name="attend" required>
+                                        <option value="">Pilih kehadiran</option>
+                                        <option value="Hadir">Hadir</option>
+                                        <option value="Berhalangan">Berhalangan</option>
+                                        <option value="Mungkin">Mungkin</option>
+                                    </select>
+
+                                    <label for="r-guests">Jumlah Tamu</label>
+                                    <input id="r-guests" name="guests" type="number" min="1" max="10" value="1">
+
+                                    <label for="r-note">Catatan / Ucapan (opsional)</label>
+                                    <textarea id="r-note" name="note" rows="3"
+                                        placeholder="Ucapan atau catatan... (opsional)"></textarea>
+
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn primary"><i
+                                                class="fa-solid fa-paper-plane"></i>
+                                            Kirim Konfirmasi</button>
+                                    </div>
+                                </form>
+
+                                <hr>
+
+                                <h3>Kirim Ucapan &amp; Doa</h3>
+                                <form id="wishForm" class="form card">
+                                    <label for="w-name">Nama</label>
+                                    <input id="w-name" name="name" type="text" placeholder="Nama" required>
+
+                                    <label for="w-attend">Kehadiran</label>
+                                    <select id="w-attend" name="attend">
+                                        <option value="Hadir">Hadir</option>
+                                        <option value="Berhalangan">Berhalangan</option>
+                                        <option value="Mungkin">Mungkin</option>
+                                    </select>
+
+                                    <label for="w-note">Ucapan</label>
+                                    <textarea id="w-note" name="note" rows="3"
+                                        placeholder="Tulis ucapan, doa, atau pesan..." required></textarea>
+
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn primary"><i
+                                                class="fa-solid fa-comment-dots"></i>
+                                            Kirim Ucapan</button>
+                                    </div>
+                                </form>
+
+                                <div class="wish-history card">
+                                    <h4>Riwayat Ucapan</h4>
+                                    <div id="wishList" class="wish-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 9 Gallery -->
+                    <section id="gallery" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Gallery</h2>
+                                <div class="video-frame">
+                                    <!-- replace youtube id below -->
+                                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video"
+                                        frameborder="0" allowfullscreen></iframe>
+                                </div>
+
+                                <div class="grid">
+                                    <!-- 3x3 gallery, replace src with your JPGs -->
+                                    <img src="images/photo1.jpg" alt="Photo 1" class="thumb">
+                                    <img src="images/photo2.jpg" alt="Photo 2" class="thumb">
+                                    <img src="images/photo3.jpg" alt="Photo 3" class="thumb">
+                                    <img src="images/photo4.jpg" alt="Photo 4" class="thumb">
+                                    <img src="images/photo5.jpg" alt="Photo 5" class="thumb">
+                                    <img src="images/photo6.jpg" alt="Photo 6" class="thumb">
+                                    <img src="images/photo7.jpg" alt="Photo 7" class="thumb">
+                                    <img src="images/photo8.jpg" alt="Photo 8" class="thumb">
+                                    <img src="images/photo9.jpg" alt="Photo 9" class="thumb">
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 10 Maps -->
+                    <section id="maps" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Maps</h2>
+                                <div class="map-embed"><iframe
+                                        src="https://www.google.com/maps/embed?pb=!1m18!2m12!3m8!1s0x0:0x0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x0!2z0JrQsNC90LjRhtC10YHRgtC40Y8!5e0!3m2!1sid!2sid!4v0000000000000"
+                                        loading="lazy"></iframe></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 11 Gift -->
+                    <section id="gift" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Gift</h2>
+                                <p class="muted">Terima kasih atas perhatian dan hadiahnya. Transfer ke rekening ...</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 12 Thanks -->
+                    <section id="thanks" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Thanks</h2>
+                                <p class="muted">Terima kasih atas doa dan kehadiran Anda.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 13 Countdown -->
+                    <section id="countdown" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Countdown</h2>
+                                <div class="countdown" id="countdownBox">
+                                    <div class="cd">
+                                        <div class="num" id="cd-days">--</div>
+                                        <div class="lbl">Hari</div>
+                                    </div>
+                                    <div class="cd">
+                                        <div class="num" id="cd-hours">--</div>
+                                        <div class="lbl">Jam</div>
+                                    </div>
+                                    <div class="cd">
+                                        <div class="num" id="cd-mins">--</div>
+                                        <div class="lbl">Menit</div>
+                                    </div>
+                                    <div class="cd">
+                                        <div class="num" id="cd-secs">--</div>
+                                        <div class="lbl">Detik</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 14 Love Story -->
+                    <section id="story" class="page section">
+                        <div class="page-scroll">
+                            <div class="page-inner">
+                                <h2>Love Story</h2>
+                                <p class="muted">Cerita singkat perjalanan cinta kami...</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                <!-- bottom menu: fixed inside frame -->
+                <nav id="bottomMenu" class="bottom-menu hidden" aria-label="Navigasi">
+                    <div class="menu-viewport">
+                        <div id="menuTrack" class="menu-track">
+
+                            <!-- Existing Menu Items -->
+                            <button class="menu-item" data-idx="0">
+                                <i class="fa-solid fa-home"></i><span>Cover</span>
+                            </button>
+                            <button class="menu-item" data-idx="1">
+                                <i class="fa-solid fa-quote-left"></i><span>Quotes</span>
+                            </button>
+                            <button class="menu-item" data-idx="2">
+                                <i class="fa-solid fa-broadcast-tower"></i><span>Live</span>
+                            </button>
+                            <button class="menu-item" data-idx="3">
+                                <i class="fa-solid fa-hand-peace"></i><span>Salam</span>
+                            </button>
+                            <button class="menu-item" data-idx="4">
+                                <i class="fa-solid fa-heart"></i><span>Memepelai</span>
+                            </button>
+                            <!-- <button class="menu-item" data-idx="4">
+                                <img src="asset/icons/love-icons.svg" alt="Couple Icon" class="menu-icon">
+                                <span>Memepelai</span>
+                            </button> -->
+                            <button class="menu-item" data-idx="5">
+                                <i class="fa-solid fa-heart"></i><span>Akad</span>
+                            </button>
+                            <button class="menu-item" data-idx="6">
+                                <i class="fa-solid fa-glass-cheers"></i><span>Resepsi</span>
+                            </button>
+                            <button class="menu-item" data-idx="7">
+                                <i class="fa-solid fa-envelope-open-text"></i><span>RSVP</span>
+                            </button>
+                            <button class="menu-item" data-idx="8">
+                                <i class="fa-solid fa-camera"></i><span>Gallery</span>
+                            </button>
+                            <button class="menu-item" data-idx="9">
+                                <i class="fa-solid fa-map-location-dot"></i><span>Maps</span>
+                            </button>
+                            <button class="menu-item" data-idx="10">
+                                <i class="fa-solid fa-gift"></i><span>Gift</span>
+                            </button>
+                            <button class="menu-item" data-idx="11">
+                                <i class="fa-solid fa-heart"></i><span>Thanks</span>
+                            </button>
+                            <button class="menu-item" data-idx="12">
+                                <i class="fa-solid fa-clock"></i><span>Countdown</span>
+                            </button>
+                            <button class="menu-item" data-idx="13">
+                                <i class="fa-solid fa-book-open"></i><span>Story</span>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+
+
+            </main>
+
+
+
+
+
+        </div>
+
+
+
+        <!-- Audio -->
+        <audio id="bgAudio" preload="none">
+            <source src="asset/music/audio.mp3" type="audio/mpeg">
+        </audio>
+
+
+
+
+        <!-- QR modal container and image preview -->
+        <div id="modal" class="modal hidden" aria-hidden="true">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button id="modalClose" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+                <div id="modalBody"></div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
