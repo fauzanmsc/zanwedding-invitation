@@ -98,7 +98,7 @@ h3,
     /* END */
 html,
 body {
-    height: 100%;
+    /* height: 100%; */
     margin: 0;
     font-family: Inter, Poppins, system-ui;
     background: var(--red);
@@ -110,6 +110,7 @@ body {
     /* tetap bisa scroll */
     overflow: hidden;
     /* supaya tidak ada scroll global */
+    height: 100vh;
 }
 
 html::-webkit-scrollbar,
