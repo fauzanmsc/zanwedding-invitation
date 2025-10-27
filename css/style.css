@@ -49,8 +49,8 @@ h3,
 
 /* Tombol musik mengambang */
 #music-btn {
-    position: absolute;
-    bottom: 20px;
+    position: fixed;
+    bottom: 50px;
     right: 20px;
     background: linear-gradient(90deg, #9D6729 0%, #D6A369 50%, #9D6729 100%);
     color: #fff;
@@ -605,10 +605,10 @@ textarea:focus {
 }
 
 .cd {
-    width: 84px;
-    height: 84px;
+    width: 74px;
+    height: 74px;
     border-radius: 12px;
-    background: #fff;
+    background: var(--red-bugis-gradient);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -618,14 +618,15 @@ textarea:focus {
 
 .num {
     font-weight: 700;
-    color: var(--red);
-    font-size: 20px
+    color: var(--white-bugis);
+    font-size: 20px;
+    font-family: 'Caudex', serif;
+    font-size: 30px;
 }
 
 .lbl {
     font-size: 12px;
-    color: var(--muted);
-    margin-top: 6px
+    color: var(--white-bugis);
 }
 
 /* bottom menu */

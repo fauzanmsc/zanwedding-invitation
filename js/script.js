@@ -390,5 +390,50 @@
     setTimeout(() => {
         if (!bottomMenu.classList.contains('hidden')) centerMenu(0);
     }, 600);
+
+})();
+
+// =============================
+// COUNTDOWN 2-DIGIT
+// =============================
+(function () {
+    const daysEl = document.getElementById('cd-days');
+    const hoursEl = document.getElementById('cd-hours');
+    const minsEl = document.getElementById('cd-mins');
+    const secsEl = document.getElementById('cd-secs');
+
+    const targetDate = new Date('2025-12-21T00:00:00');
+
+    // Fungsi bantu untuk dua digit
+    function twoDigit(num) {
+        return num.toString().padStart(2, '0');
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minsEl.textContent = '00';
+            secsEl.textContent = '00';
+            clearInterval(timer);
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        daysEl.textContent = twoDigit(days);
+        hoursEl.textContent = twoDigit(hours);
+        minsEl.textContent = twoDigit(minutes);
+        secsEl.textContent = twoDigit(seconds);
+    }
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
 })();
 
