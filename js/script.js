@@ -53,6 +53,9 @@
 
     });
 
+
+
+
     // =============================
     // FULLSCREEN HELPER
     // =============================
@@ -367,6 +370,18 @@
             }
         });
     }
+
+    // Pause/resume musik saat tab tidak aktif/aktif
+    document.addEventListener('visibilitychange', () => {
+        if (!audio) return;
+        if (document.hidden) {
+            audio.pause();
+            musicBtn?.classList.remove('music-active');
+        } else {
+            audio.play().catch(() => { });
+            musicBtn?.classList.add('music-active');
+        }
+    });
 
 
     // =============================
