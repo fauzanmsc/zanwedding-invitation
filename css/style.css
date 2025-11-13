@@ -7,12 +7,32 @@
     --red-bugis-gradient: linear-gradient(0deg, #450202, #810000);
     --gold-bugis: linear-gradient(90deg, #9D6729, #D6A369, #9D6729);
     --white-bugis: #FFEFDC;
+    --yellow-bugis: #b88143;
     --muted: #6b6b6b;
     --frame-w: 400px
 }
 
 * {
     box-sizing: border-box
+}
+
+
+/*FONT */
+
+.font-greatvibes {
+    font-family: 'Great Vibes', cursive;
+}
+
+.font-caudex {
+    font-family: 'Caudex', serif;
+}
+
+.font-pinyon {
+    font-family: 'Pinyon Script', cursive;
+}
+
+.font-cormorant {
+    font-family: 'Cormorant', serif;
 }
 
 /* Hilangkan scrollbar global, tapi tetap bisa scroll */
@@ -33,7 +53,7 @@ body,
 p,
 span,
 .serif-font {
-    font-family: 'Cormorant', serif;
+    font-family: 'Caudex', serif;
 }
 
 /* Subjudul atau teks klasik */
@@ -44,6 +64,45 @@ h3,
 }
 
 
+
+.text-opening-the-wedding-of {
+    font-size: 30px;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    color: var(--white-bugis);
+    font-family: 'Pinyon Script', cursive;
+}
+
+.text-opening-name {
+    font-size: 48px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.text-opening-and {
+    font-size: 80px;
+    line-height: 1;
+    font-family: 'Great Vibes', cursive;
+}
+
+.text-opening-date {
+    font-size: 25px;
+    line-height: 1;
+    color: var(--white-bugis);
+
+}
+
+
+
+.text-bugis-gradient {
+    background: linear-gradient(90deg, #9D6729, #D6A369, #9D6729);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Untuk browser modern */
+    color: transparent;
+    /* Fallback */
+}
 
 /*========== MUSIC==============*/
 
@@ -110,6 +169,8 @@ body {
     /* tetap bisa scroll */
     overflow: hidden;
     /* supaya tidak ada scroll global */
+    color: var(--white-bugis) !important;
+    font-family: 'Caudex', serif !important;
 
 }
 
@@ -143,6 +204,16 @@ body::-webkit-scrollbar {
     overflow: hidden;
     position: relative;
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12)
+}
+
+.text-script {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 2.4rem;
+    line-height: 1.05;
+    font-weight: 400;
+    /* Pinyon Script hanya regular */
+    letter-spacing: 0;
+    /* script biasanya pakai spacing default */
 }
 
 /* loader */
@@ -192,8 +263,156 @@ body::-webkit-scrollbar {
 
 .loader-text {
     margin-top: 12px;
-    font-family: 'Playfair Display', serif
 }
+
+/*SECTION 03*/
+.mempelai-ilustration {
+    width: 100px;
+    margin: 0 auto 30px;
+    display: block;
+}
+
+.inner-wrapper-01 {
+    background: var(--white-bugis);
+    border-radius: 200px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 40px 12px;
+    border: 4px solid var(--yellow-bugis);
+}
+
+
+.inner-wrapper-02 {
+    background: var(--red-bugis);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.065);
+    text-align: center;
+    padding: 36px 12px;
+    border: 4px solid var(--yellow-bugis);
+}
+
+
+.text-script-01 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.text-script-02 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 28px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.h-text-01 {
+    font-family: 'Caudex', serif;
+    font-size: 20px;
+    line-height: normal;
+}
+
+.zi-text-small {
+    font-size: 12px;
+}
+
+.text-description {
+    font-family: 'Cormorant', serif;
+    font-size: 14px;
+    color: black;
+    padding: 12px;
+}
+
+.wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+
+.photo-mempelai {
+    width: 180px;
+    border-radius: 200px;
+    object-fit: cover;
+    border: 4px solid var(--white-bugis);
+    box-shadow: 0 0 0 4px #c49b6b;
+    position: relative;
+    z-index: 2;
+    /* foto berada di tengah */
+}
+
+
+.mempelai-leaf {
+    position: absolute;
+}
+
+/* Daun kiri di belakang foto */
+.mempelai-leaf-left {
+    left: -50px;
+    transform: translateY(-50%) rotate(-10deg);
+    z-index: 1;
+    animation-delay: 0s;
+    width: 160px;
+    bottom: -120px;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Daun kanan di atas foto */
+.mempelai-leaf-right {
+    right: -30px;
+    transform: translateY(-50%) rotate(10deg);
+    z-index: 3;
+    animation-delay: 2s;
+    width: 90px;
+    bottom: -62px;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Animasi bergerak lembut */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-60%) rotate(5deg);
+    }
+}
+
+.mempelai-short-name {
+    font-family: 'Great Vibes';
+    font-size: 40px;
+    margin-top: 16px;
+    background: linear-gradient(90deg, #9D6729, #D6A369, #9D6729);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.mempelai-and {
+    font-family: 'Great Vibes', cursive;
+    font-size: 65px;
+    color: var(--red-bugis);
+    margin: 20px;
+}
+
+.mempelai-full-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    font-family: 'Caudex', serif;
+}
+
+.mempelai-parent-name {
+    font-size: 16px;
+    color: black;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+
+
 
 
 
@@ -202,7 +421,7 @@ body::-webkit-scrollbar {
 .page {
     position: absolute;
     inset: 0;
-    padding: 18px;
+    padding: 0 18px;
     display: flex;
     align-items: center;
     justify-content: center
@@ -312,7 +531,6 @@ body::-webkit-scrollbar {
 
 
 .guest-name {
-    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     color: #DE9F4C;
     margin: 0.25rem;
@@ -327,14 +545,15 @@ body::-webkit-scrollbar {
 
 #openBtn {
     background: linear-gradient(90deg, #9D6729 0%, #D6A369 50%, #9D6729 100%);
-    color: #FFEFDC;
+    color: var(--white-bugis);
     font-weight: 600;
-    padding: 10px 30px;
+    padding: 8px 24px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     width: 100%;
     font-size: 0.85rem;
+    font-family: 'Caudex', serif;
 }
 
 #openBtn:hover {
@@ -346,6 +565,25 @@ body::-webkit-scrollbar {
 /* END */
 
 
+.zi-btn {
+    background: var(--gold-bugis);
+    color: var(--white-bugis);
+    font-weight: 600;
+    padding: 6px 24px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 12px;
+    font-family: 'Caudex', serif;
+}
+
+.zi-btn:hover {
+    filter: brightness(1.5);
+    /* transform: translateY(-2px); */
+    transition: 0.3s ease;
+}
+
 
 
 
@@ -354,19 +592,16 @@ body::-webkit-scrollbar {
     z-index: 3
 }
 
-.sections {
+/* .sections {
     position: absolute;
     inset: 0;
     z-index: 2
-}
+} */
 
-.section {
-    position: absolute;
-    inset: 0;
+.sections {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .page-scroll {
@@ -375,7 +610,7 @@ body::-webkit-scrollbar {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     padding: 12px;
-    padding-bottom: 90px;
+    padding-bottom: 100px;
 }
 
 .inner-section {
@@ -387,11 +622,36 @@ body::-webkit-scrollbar {
     /* konten bisa scroll di dalam section */
     /* scroll-behavior: smooth;
     display: none; */
+
+
+    flex: 1;
+    /* otomatis isi ruang di atas bottom menu */
+
 }
 
 .page-inner {
     max-width: 360px;
-    margin: 0 auto
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.page-inner-center {
+    /* height: 100vh; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #d4b07b;
+}
+
+
+.zi-icons {
+    color: var(--yellow-bugis);
+
+
 }
 
 .section {
@@ -565,6 +825,18 @@ textarea:focus {
     cursor: pointer
 }
 
+.text-gold-bugis-gradient {
+    background: var(--gold-bugis);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.red-bugis {
+    color: var(--red-bugis);
+}
+
 
 /*Animasi Bunga*/
 @keyframes floatLeft {
@@ -605,7 +877,7 @@ textarea:focus {
 }
 
 .cd {
-    width: 74px;
+    width: 68px;
     height: 74px;
     border-radius: 12px;
     background: var(--red-bugis-gradient);
@@ -618,7 +890,6 @@ textarea:focus {
 
 .num {
     font-weight: 700;
-    color: var(--white-bugis);
     font-size: 20px;
     font-family: 'Caudex', serif;
     font-size: 30px;
@@ -627,11 +898,13 @@ textarea:focus {
 .lbl {
     font-size: 12px;
     color: var(--white-bugis);
+    font-family: 'Cormorant', serif;
+    font-style: italic;
 }
 
 /* bottom menu */
 .bottom-menu {
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     right: 0;
     bottom: 0;
@@ -641,6 +914,9 @@ textarea:focus {
     height: 85px;
     border-radius: 18px 18px 0 0;
     box-shadow: 0 -5px 20px 2px rgb(0 0 0 / 13%);
+
+    position: sticky;
+
 }
 
 .menu-viewport {
@@ -680,9 +956,6 @@ textarea:focus {
 }
 
 
-.menu-icon {
-    width: 30px;
-}
 
 
 .menu-item .fa-solid {
@@ -704,7 +977,7 @@ textarea:focus {
     background: var(--red-bugis-gradient);
     box-shadow: 0 10px 24px rgba(166, 0, 26, 0.12);
     border-top: 3px solid #6b0c1b;
-    color: var(--white-bugis);
+    color: var(--yellow-bugis);
 }
 
 

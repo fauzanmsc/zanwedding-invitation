@@ -1,10 +1,3 @@
-<!--
-Project: Wedding Invitation - Complete (index.html, style.css, script.js)
-Files included below. Save as separate files: index.html, style.css, script.js
-Replace music.mp3 and gallery images with your own files.
--->
-
-<!-- index.html -->
 <!doctype html>
 <html lang="id">
 
@@ -21,7 +14,7 @@ Replace music.mp3 and gallery images with your own files.
 
     <meta property="og:url" content="https://fauzanmsc.github.io/zanwedding-invitation/">
 
-    <meta property="og:image" content="https://fauzanmsc.github.io/zanwedding-invitation/asset/img/thumb-cover.png">
+    <meta property="og:image" content="https://fauzanmsc.github.io/zanwedding-invitation/assets/img/thumb-cover.png">
 
     <meta property="og:type" content="website">
 
@@ -30,7 +23,7 @@ Replace music.mp3 and gallery images with your own files.
     <meta name="twitter:title" content="Undangan Pernikahan — Tullah & Eca">
     <meta name="twitter:description"
         content="Undangan pernikahan Tullah & Eca, 21 Desember 2025. Ayo rayakan hari bahagia kami!">
-    <meta name="twitter:image" content="https://fauzanmsc.github.io/zanwedding-invitation/asset/img/thumb-cover.png">
+    <meta name="twitter:image" content="https://fauzanmsc.github.io/zanwedding-invitation/assets/img/thumb-cover.png">
 
     <title>Undangan — Tullah & Eca</title>
 
@@ -41,13 +34,19 @@ Replace music.mp3 and gallery images with your own files.
 
     <link href="css/style.css?v=2" rel="stylesheet">
 
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Caudex:wght@400;700&family=Cormorant:wght@400;500;600;700&family=Great+Vibes&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Caudex:wght@400;700&family=Pinyon+Script&family=Cormorant:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- (Opsional) Bootstrap JS Bundle (untuk komponen interaktif seperti modal, dropdown, dll) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
 </head>
 
@@ -69,9 +68,9 @@ Replace music.mp3 and gallery images with your own files.
         <div id="frame" class="frame" role="application" aria-label="Undangan Pernikahan">
 
             <section id="halamancover" class="cover section visible">
-                <img src="asset/img/cover-bg.png" alt="Background" class="wi-cover-background">
-                <img src="asset/img/leaf-left.png" alt="Dekorasi Kiri" class="leaf left">
-                <img src="asset/img/leaf-right.png" alt="Dekorasi Kanan" class="leaf right">
+                <img src="assets/img/cover-bg.png" alt="Background" class="wi-cover-background">
+                <img src="assets/img/leaf-left.png" alt="Dekorasi Kiri" class="leaf left">
+                <img src="assets/img/leaf-right.png" alt="Dekorasi Kanan" class="leaf right">
                 <div class="zi-overlay-section"></div>
                 <div class="cover-inner">
                     <div class="text-cover-01">WEDDING INVITATION</div>
@@ -83,7 +82,9 @@ Replace music.mp3 and gallery images with your own files.
                     </div>
                     <div class="buka-undangan">
                         <button id="openBtn">
-                            <i class='fa-solid fa-envelope-open-text'></i> Buka Undangan
+                            <i class='fa-solid fa-envelope-open-text'></i><span
+                                style="padding-left: 8px; font-size: 15px;">Buka
+                                Undangan</span>
                         </button>
                     </div>
                 </div>
@@ -100,13 +101,20 @@ Replace music.mp3 and gallery images with your own files.
             <main id="sections" class="sections">
 
                 <div class="inner-section">
-                    <!-- 2 Quotes -->
+                    <!-- Section 01 - Kutipan -->
                     <section id="quotes" class="page section">
-                        <img src="asset/img/section-bg-01.png" alt="Background" class="wi-cover-background">
+                        <img src="assets/img/section-bg-01.png" alt="Background" class="wi-cover-background">
                         <div class="page-scroll">
-                            <div class="page-inner">
-                                <h2>Quotes</h2>
-                                <p class="muted">"Cinta sejati tumbuh dari kebersamaan"</p>
+                            <div class="page-inner-center font-caudex">
+                                <div class="text-opening-the-wedding-of">The Wedding of</div>
+                                <div class="text-block text-bugis-gradient"
+                                    style="display: flex; flex-direction: column; align-items: center; gap: 0.3rem;">
+                                    <div class="text-opening-name">Ulla</div>
+                                    <div class="text-opening-and">&</div>
+                                    <div class="text-opening-name">Riska</div>
+                                </div>
+                                <div class="text-opening-date">21 . 12 . 25</div>
+
                             </div>
                         </div>
                     </section>
@@ -121,28 +129,201 @@ Replace music.mp3 and gallery images with your own files.
                     </section>
                     <!-- 4 Salam -->
                     <section id="salam" class="page section">
+                        <img src="assets/img/section-bg-03.png" alt="Background" class="wi-cover-background">
                         <div class="page-scroll">
-                            <div class="page-inner">
-                                <h2>Salam</h2>
-                                <p class="muted">Wassalamu'alaikum warahmatullahi wabarakatuh.</p>
+                            <div class="page-inner inner-wrapper-01">
+
+
+
+                                <img class="mempelai-ilustration" src="assets/img/bugis-ilustration-01.png"
+                                    alt="Ornamen">
+
+                                <div class="text-script-02 red-bugis">We Are<br>Getting Married
+                                </div>
+
+                                <div class="text-description">
+                                    Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah,
+                                    semoga ridho-Mu tercurah mengiringi pernikahan kami:
+                                </div>
+
+
+                                <div style="margin:30px 0;">
+                                    <!-- Mempelai Pria -->
+                                    <div>
+                                        <div class="wrapper">
+                                            <!-- Daun kiri -->
+                                            <img src="assets/img/mempelai-leaf-left.png" alt="Leaf Left"
+                                                class="mempelai-leaf  mempelai-leaf-left">
+                                            <!-- Foto mempelai -->
+                                            <img src="assets/photos/ula.png" alt="Tullah" class="photo-mempelai">
+                                            <!-- Daun kanan -->
+                                            <img src="assets/img/mempelai-leaf-right.png" alt="Leaf Right"
+                                                class="mempelai-leaf mempelai-leaf-right">
+
+                                        </div>
+
+                                        <div class="mempelai-short-name">Tullah</div>
+                                        <div class="mempelai-full-name">Muhammad Rachmatullah, S.Ak., M.Ak</div>
+                                        <div class="mempelai-parent-name">Putra dari Bapak Muchtar, Amd &amp; <br>Ibu
+                                            Syamsiah T, S.Pd (Almh)</div>
+                                    </div>
+
+                                    <div class="mempelai-and">&</div>
+
+                                    <!-- Mempelai Wanita -->
+                                    <div>
+                                        <div class="wrapper">
+                                            <!-- Daun kiri -->
+                                            <img src="assets/img/mempelai-leaf-left.png" alt="Leaf Left"
+                                                class="mempelai-leaf  mempelai-leaf-left">
+                                            <!-- Foto mempelai -->
+                                            <img src="assets/photos/riska.png" alt="Eca" class="photo-mempelai">
+                                            <!-- Daun kanan -->
+                                            <img src="assets/img/mempelai-leaf-right.png" alt="Leaf Right"
+                                                class="mempelai-leaf mempelai-leaf-right">
+
+                                        </div>
+
+                                        <div class="mempelai-short-name">Eca</div>
+                                        <div class="mempelai-full-name">Riska Junianti, Amd.Keb</div>
+                                        <div class="mempelai-parent-name">Putri dari Bapak Ridwan Taher <br>&amp; Ibu
+                                            Rosmawati</div>
+                                    </div>
+
+                                </div>
+
+
                             </div>
                         </div>
                     </section>
                     <!-- 5 Couple -->
-                    <section id="couple" class="page section">
+
+
+
+                    <section id="countdown" class="page section">
+                        <img src="assets/img/section-bg-04.png" alt="Background" class="wi-cover-background">
                         <div class="page-scroll">
-                            <div class="page-inner">
-                                <h2>Mempelai</h2>
-                                <div class="couple-card">
-                                    <div class="avatar">Foto</div>
-                                    <div class="info">
-                                        <h3>Andi &amp; Sari</h3>
-                                        <p class="muted">Dua insan, satu ikrar.</p>
+                            <div class="page-inner" style="
+    margin-top: 40px;
+">
+                                <img class="mempelai-ilustration" src="assets/img/bugis-ilustration-01.png"
+                                    alt="Ornamen">
+
+                                <div class="text-script-02 red-bugis">Save The Date</div>
+
+                                <div class="countdown" id="countdownBox">
+                                    <div class="cd">
+                                        <div class="num text-gold-bugis-gradient" id="cd-days">--</div>
+                                        <div class="lbl">Hari</div>
+                                    </div>
+                                    <div class="cd">
+                                        <div class="num text-gold-bugis-gradient" id="cd-hours">--</div>
+                                        <div class="lbl">Jam</div>
+                                    </div>
+                                    <div class="cd">
+                                        <div class="num text-gold-bugis-gradient" id="cd-mins">--</div>
+                                        <div class="lbl">Menit</div>
+                                    </div>
+                                    <div class="cd">
+                                        <div class="num text-gold-bugis-gradient" id="cd-secs">--</div>
+                                        <div class="lbl">Detik</div>
                                     </div>
                                 </div>
+
+                                <div class="text-description">
+                                    Dengan memohon rahmat dan ridho Allah SWT, kami mengundang Bapak/Ibu/Saudara/i,
+                                    untuk menghadiri acara pernikahan kami:
+                                </div>
                             </div>
+
+                            <div class="page-inner inner-wrapper-02 mb-4">
+                                <div class="text-script-01 text-gold-bugis-gradient">Akad & Resepsi
+                                </div>
+
+                                <div class="d-flex flex-column align-items-center text-center mb-5">
+                                    <div class="h-text-01 text-gold-bugis-gradient text-uppercase fw-bold pb-1">
+                                        Minggu<br>21 Desember 2025
+                                    </div>
+                                    <div class="zi-text-small">Pukul 10.00 WITA - Selesai</div>
+                                </div>
+
+                                <div class="pb-3">
+
+                                    <svg class="zi-icons" width="60" height="60" viewBox="0 0 24 24" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+                                        <path
+                                            d="M12 1.5C7.85953 1.5 4.5 4.52391 4.5 8.25C4.5 14.25 12 22.5 12 22.5C12 22.5 19.5 14.25 19.5 8.25C19.5 4.52391 16.1405 1.5 12 1.5ZM12 12C11.4067 12 10.8266 11.8241 10.3333 11.4944C9.83994 11.1648 9.45542 10.6962 9.22836 10.1481C9.0013 9.59987 8.94189 8.99667 9.05764 8.41473C9.1734 7.83279 9.45912 7.29824 9.87868 6.87868C10.2982 6.45912 10.8328 6.1734 11.4147 6.05764C11.9967 5.94189 12.5999 6.0013 13.148 6.22836C13.6962 6.45542 14.1648 6.83994 14.4944 7.33329C14.8241 7.82664 15 8.40666 15 9C14.9991 9.79538 14.6828 10.5579 14.1204 11.1204C13.5579 11.6828 12.7954 11.9991 12 12Z" />
+                                    </svg>
+                                </div>
+
+
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <div class="mb-2">
+                                        <div class="h-text-01 text-gold-bugis-gradient fw-bold pb-1">
+                                            Masjid To’do lentu
+                                        </div>
+                                        <div class="zi-text-small">Desa Lentu, Dusun Ta’binjai,<br>Kec. Bontoramba, Kab.
+                                            Jeneponto</div>
+                                    </div>
+
+                                    <div class="zi-btn">
+
+                                        <i class="fas fa-map-marked-alt"></i><span
+                                            style="padding-left: 8px; font-size: 15px;">Lihat Google Maps</span>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="page-inner inner-wrapper-02">
+                                <div class="text-script-01 text-gold-bugis-gradient">Resepsi Pernikahan
+                                </div>
+
+                                <div class="d-flex flex-column align-items-center text-center mb-5">
+                                    <div class="h-text-01 text-gold-bugis-gradient text-uppercase fw-bold pb-1">
+                                        Sabtu<br>21 Januari 2026
+                                    </div>
+                                    <div class="zi-text-small">Pukul 10.00 WITA - Selesai</div>
+                                </div>
+
+                                <div class="pb-3">
+
+                                    <svg class="zi-icons" width="60" height="60" viewBox="0 0 24 24" fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+                                        <path
+                                            d="M12 1.5C7.85953 1.5 4.5 4.52391 4.5 8.25C4.5 14.25 12 22.5 12 22.5C12 22.5 19.5 14.25 19.5 8.25C19.5 4.52391 16.1405 1.5 12 1.5ZM12 12C11.4067 12 10.8266 11.8241 10.3333 11.4944C9.83994 11.1648 9.45542 10.6962 9.22836 10.1481C9.0013 9.59987 8.94189 8.99667 9.05764 8.41473C9.1734 7.83279 9.45912 7.29824 9.87868 6.87868C10.2982 6.45912 10.8328 6.1734 11.4147 6.05764C11.9967 5.94189 12.5999 6.0013 13.148 6.22836C13.6962 6.45542 14.1648 6.83994 14.4944 7.33329C14.8241 7.82664 15 8.40666 15 9C14.9991 9.79538 14.6828 10.5579 14.1204 11.1204C13.5579 11.6828 12.7954 11.9991 12 12Z" />
+                                    </svg>
+                                </div>
+
+
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <div class="mb-2">
+                                        <div class="h-text-01 text-gold-bugis-gradient fw-bold pb-1">
+                                            Masjid To’do lentu
+                                        </div>
+                                        <div class="zi-text-small">Desa Lentu, Dusun Ta’binjai,<br>Kec. Bontoramba, Kab.
+                                            Jeneponto</div>
+                                    </div>
+
+                                    <div class="zi-btn">
+
+                                        <i class="fas fa-map-marked-alt"></i><span
+                                            style="padding-left: 8px; font-size: 15px;">Lihat Google Maps</span>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+
                         </div>
                     </section>
+
                     <!-- 6 Akad -->
                     <section id="akad" class="page section">
                         <div class="page-scroll">
@@ -329,50 +510,83 @@ Replace music.mp3 and gallery images with your own files.
 
                             <!-- Existing Menu Items -->
                             <button class="menu-item" data-idx="0">
-                                <i class="fa-solid fa-home"></i><span>Cover</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4 19V10C4 9.68333 4.071 9.38333 4.213 9.1C4.355 8.81667 4.55067 8.58333 4.8 8.4L10.8 3.9C11.15 3.63333 11.55 3.5 12 3.5C12.45 3.5 12.85 3.63333 13.2 3.9L19.2 8.4C19.45 8.58333 19.646 8.81667 19.788 9.1C19.93 9.38333 20.0007 9.68333 20 10V19C20 19.55 19.804 20.021 19.412 20.413C19.02 20.805 18.5493 21.0007 18 21H15C14.7167 21 14.4793 20.904 14.288 20.712C14.0967 20.52 14.0007 20.2827 14 20V15C14 14.7167 13.904 14.4793 13.712 14.288C13.52 14.0967 13.2827 14.0007 13 14H11C10.7167 14 10.4793 14.096 10.288 14.288C10.0967 14.48 10.0007 14.7173 10 15V20C10 20.2833 9.904 20.521 9.712 20.713C9.52 20.905 9.28267 21.0007 9 21H6C5.45 21 4.97933 20.8043 4.588 20.413C4.19667 20.0217 4.00067 19.5507 4 19Z" />
+                                </svg>
+                                <span>Home</span>
                             </button>
                             <button class="menu-item" data-idx="1">
-                                <i class="fa-solid fa-quote-left"></i><span>Quotes</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M5 20C4.20435 20 3.44129 19.6839 2.87868 19.1213C2.31607 18.5587 2 17.7956 2 17V7C2 6.20435 2.31607 5.44129 2.87868 4.87868C3.44129 4.31607 4.20435 4 5 4H19C19.7956 4 20.5587 4.31607 21.1213 4.87868C21.6839 5.44129 22 6.20435 22 7V17C22 17.7956 21.6839 18.5587 21.1213 19.1213C20.5587 19.6839 19.7956 20 19 20H5ZM7.625 8.22C7.52313 8.13302 7.40483 8.06739 7.27711 8.027C7.1494 7.98662 7.01487 7.97231 6.88151 7.98491C6.74816 7.99752 6.61869 8.03679 6.50081 8.1004C6.38292 8.164 6.27901 8.25064 6.19525 8.35517C6.11149 8.4597 6.04959 8.58 6.01321 8.70891C5.97684 8.83783 5.96673 8.97274 5.9835 9.10564C6.00026 9.23853 6.04356 9.36671 6.11081 9.48255C6.17806 9.59839 6.2679 9.69954 6.375 9.78L10.125 12.781C10.6571 13.207 11.3184 13.4391 12 13.4391C12.6816 13.4391 13.3429 13.207 13.875 12.781L17.625 9.781C17.7276 9.69892 17.813 9.59745 17.8763 9.48237C17.9396 9.3673 17.9797 9.24087 17.9942 9.11031C18.0087 8.97975 17.9973 8.84762 17.9607 8.72145C17.9241 8.59529 17.8631 8.47756 17.781 8.375C17.6989 8.27244 17.5974 8.18705 17.4824 8.1237C17.3673 8.06035 17.2409 8.02029 17.1103 8.00581C16.9798 7.99132 16.8476 8.00269 16.7215 8.03927C16.5953 8.07585 16.4776 8.13692 16.375 8.219L12.625 11.219C12.4476 11.361 12.2272 11.4384 12 11.4384C11.7728 11.4384 11.5524 11.361 11.375 11.219L7.625 8.22Z" />
+                                </svg>
+
+                                <span>Opening</span>
                             </button>
                             <button class="menu-item" data-idx="2">
-                                <i class="fa-solid fa-broadcast-tower"></i><span>Live</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M21 3C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V18C22 18.2652 21.8946 18.5196 21.7071 18.7071C21.5196 18.8946 21.2652 19 21 19H6.455L2 22.5V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3H21ZM10.515 7.412C8.728 8.187 7.5 9.755 7.5 11.505C7.5 12.5 7.777 13.114 8.292 13.661C8.616 14.005 9.129 14.25 9.666 14.25C9.89581 14.25 10.1234 14.2047 10.3357 14.1168C10.548 14.0288 10.7409 13.8999 10.9034 13.7374C11.0659 13.5749 11.1948 13.382 11.2828 13.1697C11.3707 12.9574 11.416 12.7298 11.416 12.5C11.4138 12.06 11.2468 11.6369 10.9481 11.3139C10.6493 10.9909 10.2405 10.7915 9.802 10.755C9.64251 10.7391 9.48169 10.7425 9.323 10.765V10.673C9.329 10.233 9.423 8.933 10.962 8.1L10.515 7.412ZM15.515 7.412C13.728 8.187 12.5 9.755 12.5 11.505C12.5 12.5 12.777 13.114 13.292 13.661C13.616 14.005 14.129 14.25 14.666 14.25C15.1301 14.25 15.5752 14.0656 15.9034 13.7374C16.2316 13.4092 16.416 12.9641 16.416 12.5C16.4138 12.06 16.2468 11.6369 15.9481 11.3139C15.6493 10.9909 15.2405 10.7915 14.802 10.755C14.6425 10.7391 14.4817 10.7425 14.323 10.765V10.673C14.329 10.233 14.423 8.933 15.962 8.1L15.515 7.412Z" />
+                                </svg>
+                                <span>Kutipan</span>
                             </button>
                             <button class="menu-item" data-idx="3">
-                                <i class="fa-solid fa-hand-peace"></i><span>Salam</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12 3C16.9673 3 21 7.0327 21 12C21 16.9673 16.9673 21 12 21C7.0327 21 3 16.9673 3 12C3 7.0327 7.0327 3 12 3ZM11.9896 16.8818L11.9864 16.8836H11.9927L11.9896 16.8818ZM11.9896 16.8818C19.8486 12.3524 16.1276 8.71219 14.3456 8.28539C13.1517 7.99964 12.3735 8.74608 11.9896 9.27033C11.6057 8.74608 10.8273 7.99964 9.63356 8.28539C7.85156 8.71205 4.13034 12.3524 11.9896 16.8818Z" />
+                                </svg>
+                                <span>Mempelai</span>
                             </button>
                             <button class="menu-item" data-idx="4">
-                                <i class="fa-solid fa-heart"></i><span>Memepelai</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 9.36842C3 7.68095 3 6.83811 3.52432 6.31379C4.04863 5.78947 4.89147 5.78947 6.57895 5.78947H17.3158C19.0033 5.78947 19.8461 5.78947 20.3704 6.31379C20.8947 6.83811 20.8947 7.68095 20.8947 9.36842C20.8947 9.78984 20.8947 10.001 20.7641 10.1325C20.6326 10.2632 20.4205 10.2632 20 10.2632H3.89474C3.47332 10.2632 3.26216 10.2632 3.13063 10.1325C3 10.001 3 9.78895 3 9.36842Z"
+                                        fill="#570000" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3 17.4211C3 19.1085 3 19.9514 3.52432 20.4757C4.04863 21 4.89147 21 6.57895 21H17.3158C19.0033 21 19.8461 21 20.3704 20.4757C20.8947 19.9514 20.8947 19.1085 20.8947 17.4211V12.9474C20.8947 12.5259 20.8947 12.3148 20.7641 12.1833C20.6326 12.0526 20.4205 12.0526 20 12.0526H3.89474C3.47332 12.0526 3.26216 12.0526 3.13063 12.1833C3 12.3148 3 12.5268 3 12.9474V17.4211ZM7.47368 14.7368C7.47368 14.3154 7.47368 14.1043 7.60432 13.9727C7.73584 13.8421 7.9479 13.8421 8.36842 13.8421H10.1579C10.5793 13.8421 10.7905 13.8421 10.922 13.9727C11.0526 14.1043 11.0526 14.3154 11.0526 14.7368C11.0526 15.1583 11.0526 15.3694 10.922 15.5009C10.7905 15.6316 10.5784 15.6316 10.1579 15.6316H8.36842C7.947 15.6316 7.73584 15.6316 7.60432 15.5009C7.47368 15.3694 7.47368 15.1574 7.47368 14.7368ZM7.60432 17.5517C7.47368 17.6832 7.47368 17.8953 7.47368 18.3158C7.47368 18.7363 7.47368 18.9484 7.60432 19.0799C7.73584 19.2105 7.9479 19.2105 8.36842 19.2105H10.1579C10.5793 19.2105 10.7905 19.2105 10.922 19.0799C11.0526 18.9484 11.0526 18.7363 11.0526 18.3158C11.0526 17.8953 11.0526 17.6832 10.922 17.5517C10.7905 17.4211 10.5784 17.4211 10.1579 17.4211H8.36842C7.947 17.4211 7.73584 17.4211 7.60432 17.5517ZM12.8421 14.7368C12.8421 14.3154 12.8421 14.1043 12.9727 13.9727C13.1043 13.8421 13.3163 13.8421 13.7368 13.8421H15.5263C15.9477 13.8421 16.1589 13.8421 16.2904 13.9727C16.4211 14.1043 16.4211 14.3154 16.4211 14.7368C16.4211 15.1583 16.4211 15.3694 16.2904 15.5009C16.1589 15.6316 15.9468 15.6316 15.5263 15.6316H13.7368C13.3154 15.6316 13.1043 15.6316 12.9727 15.5009C12.8421 15.3694 12.8421 15.1574 12.8421 14.7368ZM12.9727 17.5517C12.8421 17.6832 12.8421 17.8953 12.8421 18.3158C12.8421 18.7363 12.8421 18.9484 12.9727 19.0799C13.1043 19.2105 13.3154 19.2105 13.7368 19.2105H15.5263C15.9477 19.2105 16.1589 19.2105 16.2904 19.0799C16.4211 18.9484 16.4211 18.7363 16.4211 18.3158C16.4211 17.8953 16.4211 17.6832 16.2904 17.5517C16.1589 17.4211 15.9468 17.4211 15.5263 17.4211H13.7368C13.3154 17.4211 13.1043 17.4211 12.9727 17.5517Z" />
+                                    <path
+                                        d="M7 5C7 4.44772 7.44772 4 8 4C8.55228 4 9 4.44772 9 5V7C9 7.55228 8.55228 8 8 8C7.44772 8 7 7.55228 7 7V5Z" />
+                                    <path
+                                        d="M15 5C15 4.44772 15.4477 4 16 4C16.5523 4 17 4.44772 17 5V7C17 7.55228 16.5523 8 16 8C15.4477 8 15 7.55228 15 7V5Z" />
+                                </svg>
+                                <span>Acara</span>
                             </button>
-                            <!-- <button class="menu-item" data-idx="4">
-                                <img src="asset/icons/love-icons.svg" alt="Couple Icon" class="menu-icon">
-                                <span>Memepelai</span>
-                            </button> -->
-                            <button class="menu-item" data-idx="5">
-                                <i class="fa-solid fa-heart"></i><span>Akad</span>
-                            </button>
+
                             <button class="menu-item" data-idx="6">
-                                <i class="fa-solid fa-glass-cheers"></i><span>Resepsi</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M4.6021 2.96526L4.58654 2.96681L3.81188 3.04089C3.2732 3.09235 2.76795 3.32326 2.37843 3.69602C1.98891 4.06878 1.73807 4.56142 1.66677 5.0937L1.6201 5.44561L1.61699 5.46721C1.43966 6.77607 1.24988 8.18988 1.24988 9.64845C1.24988 11.107 1.43966 12.5193 1.61699 13.8312L1.6201 13.8513L1.66677 14.2047C1.7384 14.7367 1.98938 15.229 2.37887 15.6015C2.76836 15.9739 3.27343 16.2046 3.81188 16.256L3.88654 16.2622C3.8461 15.7405 3.82536 15.208 3.82432 14.6647C3.82432 13.0749 4.02966 11.5469 4.20388 10.2581L4.25832 9.85527C4.38812 8.89099 4.84317 7.99718 5.54934 7.32228C6.25551 6.64739 7.17119 6.22963 8.14721 6.13708L8.90943 6.06299L8.94677 6.0599C10.4821 5.91173 12.2181 5.74349 14.0085 5.74349C15.1485 5.75026 16.2877 5.80484 17.423 5.9071L17.3623 5.45795V5.44561L17.3141 5.09215C17.2425 4.56016 16.9915 4.06787 16.602 3.69542C16.2125 3.32297 15.7074 3.09228 15.169 3.04089L14.3959 2.96681H14.3803C12.8294 2.81401 11.1837 2.65503 9.49121 2.65503C7.79877 2.65503 6.15143 2.81555 4.6021 2.96526ZM9.09766 7.98151C10.6563 7.8318 12.313 7.67128 14.0085 7.67128C15.7041 7.67128 17.3623 7.8318 18.921 7.98151L19.6879 8.0556C20.2266 8.10705 20.7318 8.33797 21.1213 8.71072C21.5108 9.08348 21.7617 9.57612 21.833 10.1084L21.8797 10.4649C22.0585 11.7815 22.2499 13.203 22.2499 14.6632C22.2499 16.1233 22.0585 17.5448 21.8812 18.8614L21.833 19.2194C21.7614 19.7514 21.5104 20.2437 21.1209 20.6162C20.7314 20.9886 20.2263 21.2193 19.6879 21.2707L18.921 21.3448C17.3623 21.4945 15.7041 21.655 14.0085 21.655C12.313 21.655 10.6563 21.4945 9.09766 21.3448L8.33077 21.2707C7.79209 21.2193 7.28684 20.9883 6.89732 20.6156C6.5078 20.2428 6.25696 19.7502 6.18566 19.2179L6.13743 18.8598C5.9601 17.5448 5.76877 16.1233 5.76877 14.6632C5.76877 13.203 5.9601 11.7815 6.13743 10.4649L6.18566 10.1069C6.25729 9.57486 6.50827 9.08258 6.89776 8.71012C7.28725 8.33767 7.79232 8.10698 8.33077 8.0556L9.09766 7.98151ZM12.5712 14.9533C14.329 16.1927 15.8348 17.8751 16.9517 19.5868C15.9779 19.6671 15.001 19.7257 14.0085 19.7257C12.4157 19.7257 10.8632 19.576 9.30143 19.4247L8.51277 19.3491C8.41264 19.3387 8.31889 19.2954 8.24645 19.226C8.174 19.1567 8.12702 19.0652 8.11299 18.9663L8.06632 18.6221C7.93721 17.6559 7.80966 16.7082 7.74899 15.7575C8.06521 15.4905 8.39323 15.2377 8.7321 14.9996C9.85832 14.2063 11.3983 14.126 12.5712 14.9533ZM16.9314 14.2433C18.1417 14.2433 18.823 13.5688 18.823 12.368C18.823 11.1672 18.1417 10.4912 16.9314 10.4912C15.7212 10.4912 15.0414 11.1672 15.0414 12.368C15.0414 13.5688 15.7212 14.2433 16.9314 14.2433Z" />
+                                </svg>
+                                <span>Galeri</span>
                             </button>
+
                             <button class="menu-item" data-idx="7">
-                                <i class="fa-solid fa-envelope-open-text"></i><span>RSVP</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M20.1 4H4.9C3.855 4 3 4.85 3 5.88889V19.1111C3 20.15 3.855 21 4.9 21H20.1C21.145 21 22 20.15 22 19.1111V5.88889C22 4.85 21.145 4 20.1 4ZM9.65 17.2222H6.8C6.2775 17.2222 5.85 16.7972 5.85 16.2778C5.85 15.7583 6.2775 15.3333 6.8 15.3333H9.65C10.1725 15.3333 10.6 15.7583 10.6 16.2778C10.6 16.7972 10.1725 17.2222 9.65 17.2222ZM9.65 13.4444H6.8C6.2775 13.4444 5.85 13.0194 5.85 12.5C5.85 11.9806 6.2775 11.5556 6.8 11.5556H9.65C10.1725 11.5556 10.6 11.9806 10.6 12.5C10.6 13.0194 10.1725 13.4444 9.65 13.4444ZM9.65 9.66667H6.8C6.2775 9.66667 5.85 9.24167 5.85 8.72222C5.85 8.20278 6.2775 7.77778 6.8 7.77778H9.65C10.1725 7.77778 10.6 8.20278 10.6 8.72222C10.6 9.24167 10.1725 9.66667 9.65 9.66667ZM18.865 11.6689L15.8535 14.6628C15.483 15.0311 14.875 15.0311 14.5045 14.6628L13.165 13.3217C13.077 13.2342 13.0073 13.1304 12.9597 13.0162C12.9121 12.9019 12.8876 12.7795 12.8876 12.6558C12.8876 12.5322 12.9121 12.4097 12.9597 12.2955C13.0073 12.1812 13.077 12.0774 13.165 11.99C13.253 11.9026 13.3574 11.8332 13.4723 11.7859C13.5872 11.7386 13.7104 11.7142 13.8347 11.7142C13.9591 11.7142 14.0823 11.7386 14.1972 11.7859C14.3121 11.8332 14.4165 11.9026 14.5045 11.99L15.179 12.6606L17.5255 10.3278C17.6134 10.2402 17.7178 10.1708 17.8327 10.1234C17.9476 10.076 18.0708 10.0516 18.1953 10.0516C18.3197 10.0516 18.4429 10.076 18.5578 10.1234C18.6727 10.1708 18.7771 10.2402 18.865 10.3278L18.8745 10.3372C19.2355 10.7056 19.2355 11.31 18.865 11.6689Z" />
+                                </svg>
+                                <span>RSVP</span>
                             </button>
+
                             <button class="menu-item" data-idx="8">
-                                <i class="fa-solid fa-camera"></i><span>Gallery</span>
+                                <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.59455 4.00003C8.04818 3.99206 6.54273 5.44298 7.23 7.24467H4.63636C4.20237 7.24467 3.78616 7.41265 3.47928 7.71166C3.1724 8.01067 3 8.41622 3 8.83909V10.4335C3 10.6449 3.0862 10.8477 3.23964 10.9972C3.39308 11.1467 3.60119 11.2307 3.81818 11.2307H11.1818V8.83909H12.8182V11.2307H20.1818C20.3988 11.2307 20.6069 11.1467 20.7604 10.9972C20.9138 10.8477 21 10.6449 21 10.4335V8.83909C21 8.41622 20.8276 8.01067 20.5207 7.71166C20.2138 7.41265 19.7976 7.24467 19.3636 7.24467H16.77C17.7273 4.6378 14.1273 2.79625 12.4664 5.04438L12 5.65025L11.5336 5.02843C11.0182 4.31892 10.3064 4.008 9.59455 4.00003ZM9.54545 5.65025C10.2736 5.65025 10.6418 6.51124 10.1264 7.01348C9.61091 7.51572 8.72727 7.15698 8.72727 6.44746C8.72727 6.23603 8.81347 6.03326 8.96691 5.88375C9.12035 5.73425 9.32846 5.65025 9.54545 5.65025ZM14.4545 5.65025C15.1827 5.65025 15.5509 6.51124 15.0355 7.01348C14.52 7.51572 13.6364 7.15698 13.6364 6.44746C13.6364 6.23603 13.7226 6.03326 13.876 5.88375C14.0294 5.73425 14.2375 5.65025 14.4545 5.65025ZM3.81818 12.0279V18.4056C3.81818 18.8284 3.99058 19.234 4.29746 19.533C4.60434 19.832 5.02055 20 5.45455 20H18.5455C18.9794 20 19.3957 19.832 19.7025 19.533C20.0094 19.234 20.1818 18.8284 20.1818 18.4056V12.0279H12.8182V18.4056H11.1818V12.0279H3.81818Z" />
+                                </svg>
+                                <span>Gift</span>
                             </button>
+
                             <button class="menu-item" data-idx="9">
-                                <i class="fa-solid fa-map-location-dot"></i><span>Maps</span>
-                            </button>
-                            <button class="menu-item" data-idx="10">
-                                <i class="fa-solid fa-gift"></i><span>Gift</span>
-                            </button>
-                            <button class="menu-item" data-idx="11">
-                                <i class="fa-solid fa-heart"></i><span>Thanks</span>
-                            </button>
-                            <button class="menu-item" data-idx="12">
-                                <i class="fa-solid fa-clock"></i><span>Countdown</span>
-                            </button>
-                            <button class="menu-item" data-idx="13">
-                                <i class="fa-solid fa-book-open"></i><span>Story</span>
+                                <i class="fa-solid fa-book-open"></i><span>Thanks</span>
                             </button>
                         </div>
                     </div>
@@ -391,7 +605,7 @@ Replace music.mp3 and gallery images with your own files.
 
         <!-- Audio -->
         <audio id="bgAudio" autoplay loop preload="auto">
-            <source src="asset/music/audio.mp3" type="audio/mpeg">
+            <source src="assets/music/audio.mp3" type="audio/mpeg">
         </audio>
 
 
