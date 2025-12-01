@@ -437,3 +437,41 @@
     const timer = setInterval(updateCountdown, 1000);
 })();
 
+// SALIN NOMOR REKENING
+document.querySelectorAll('.btn-copy').forEach(button => {
+    button.addEventListener('click', function () {
+        // cari elemen parent terdekat (.rekening-card)
+        const card = this.closest('.rekening-card');
+
+        // ambil nomor rekening di dalam card tersebut
+        const number = card.querySelector('.card-number').textContent.trim();
+
+        // copy ke clipboard
+        navigator.clipboard.writeText(number).then(() => {
+            // feedback
+            this.querySelector('span').textContent = "Disalin!";
+            
+            setTimeout(() => {
+                this.querySelector('span').textContent = "Salin Nomor Rekening";
+            }, 1500);
+        });
+    });
+});
+
+// SALIN ALAMAT GIFT CARD
+document.querySelectorAll('.gift-card .btn-copy').forEach(button => {
+    button.addEventListener('click', function () {
+        const card = this.closest('.gift-card');
+
+        // ambil alamat
+        const address = card.querySelector('.gift-location').textContent.trim();
+
+        // salin ke clipboard
+        navigator.clipboard.writeText(address).then(() => {
+            this.querySelector('span').textContent = "Disalin!";
+            setTimeout(() => {
+                this.querySelector('span').textContent = "Salin Alamat";
+            }, 1500);
+        });
+    });
+});
