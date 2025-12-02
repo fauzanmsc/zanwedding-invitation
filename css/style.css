@@ -651,7 +651,8 @@ body::-webkit-scrollbar {
 
 /* INITIAL U & R */
 .initials {
-    font-size: 50px;
+    font-size: 35px;
+    margin: 15px 0;
 }
 
 /* ARABIC TEXT */
@@ -866,13 +867,13 @@ body::-webkit-scrollbar {
 }
 
 .card-bank-logo {
-    width: 150px;
+    height: 40px;
 }
 
 .card-number {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 600;
-    letter-spacing: 1px;
+    letter-spacing: 5px;
 }
 
 .card-name {
