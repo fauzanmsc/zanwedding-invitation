@@ -661,6 +661,55 @@ body::-webkit-scrollbar {
     padding: 0 14px;
 }
 
+.invite-wrapper {
+    text-align: center;
+    color: #fff;
+}
+
+.couple-name {
+    font-size: 50px;
+    color: #DE9F4C;
+    font-weight: 500;
+    display: flex;
+    align-items: center; /* <-- pusatkan secara vertikal */
+    justify-content: center; /* <-- rata tengah horizontal */
+    gap: 10px;
+}
+
+.couple-name span {
+    font-family: 'Great Vibes', cursive;
+}
+
+.and-symbol {
+    font-size: 30px; /* ukuran kecil */
+    font-family: 'Great Vibes', cursive;
+    display: flex;
+    align-items: center; /* pusatkan simbol & */
+}
+
+.brand-logo {
+    width: 150px;
+    margin: 5px auto 5px auto;
+    display: block;
+}
+
+.sosmed-row a {
+    color: #fff;
+    font-size: 18px;
+    margin: 0 6px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.sosmed-row a:hover {
+    opacity: 0.7;
+}
+
+.copyright {
+    margin-top: 5px;
+    font-size: 10px;
+    opacity: 0.5;
+}
 
 
 .zi-btn-green {
