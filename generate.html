@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invitation Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background:#f5f6fa; }
+        .card { border-radius:20px; }
+        .toast-container { position: fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9999; }
+    </style>
+</head>
+<body>
+<div class="container py-4">
+    <h3 class="text-center mb-4 fw-bold">Wedding Invitation Generator</h3>
+
+    <div class="card shadow p-4">
+        <h5 class="fw-bold mb-3">Input Tamu</h5>
+        <p class="text-muted">Masukkan nama tamu & nomor WA. Link dan pesan akan otomatis di-generate.</p>
+
+        <div id="guestInputs"></div>
+
+        <button class="btn btn-primary w-100 mt-3" onclick="generateResult()">Generate</button>
+    </div>
+
+    <div id="resultArea" class="d-none mt-4">
+        <h5 class="fw-bold mb-3">Hasil</h5>
+        <div id="resultList"></div>
+    </div>
+</div>
+
+<div class="toast-container"></div>
+
+<script>
+const baseUrl = "https://fauzanmsc.github.io/zanwedding-invitation/?to=";
+const toastContainer = document.querySelector('.toast-container');
+
+function showToast(msg) {
+    const t = document.createElement('div');
+    t.className = "toast align-items-center text-bg-dark border-0 show mb-2";
+    t.innerHTML = `<div class="d-flex"><div class="toast-body">${msg}</div></div>`;
+    toastContainer.appendChild(t);
+    setTimeout(()=> t.remove(), 2000);
+}
+
+function normalizePhone(phone) {
+    phone = phone.replace(/[^0-9]/g, "");
+    if (phone.startsWith("0")) return "62" + phone.substring(1);
+    if (phone.startsWith("62")) return phone;
+    return phone;
+}
+
+function createGuestInputs() {
+    let html = "";
+    for (let i = 1; i <= 10; i++) {
+        html += `
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-6">
+                    <input class="form-control" id="name${i}" placeholder="Nama Tamu ${i}">
+                </div>
+                <div class="col-12 col-md-6">
+                    <input class="form-control" id="wa${i}" placeholder="Nomor WA (contoh 0812xxxxx)">
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById("guestInputs").innerHTML = html;
+}
+
+createGuestInputs();
+
+function generateResult() {
+    const list = document.getElementById("resultList");
+    list.innerHTML = "";
+    let hasItem = false;
+
+    for (let i = 1; i <= 10; i++) {
+        const name = document.getElementById(`name${i}`).value.trim();
+        const wa = document.getElementById(`wa${i}`).value.trim();
+
+        if (!name || !wa) continue;
+        hasItem = true;
+
+        const encodedName = encodeURIComponent(name.replace(/ /g, "+"));
+        const link = baseUrl + encodedName;
+        const waNumber = normalizePhone(wa);
+        const caption = `Kepada Yth. ${name}%0A%0ATanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.%0A%0ASilakan akses undangan:%0A${link}%0A%0AHormat kami,%0ATullah & Eca`;
+        const waShare = `https://wa.me/${waNumber}?text=${caption}`;
+
+        list.innerHTML += `
+            <div class="card p-3 shadow-sm mb-3">
+                <h6 class="fw-bold">${name}</h6>
+                <small class="text-muted">WA: ${waNumber}</small><br>
+                <div class="mt-2 d-flex gap-2">
+                    <a class="btn btn-success btn-sm" href="${waShare}" target="_blank">Share WA</a>
+                </div>
+            </div>
+        `;
+    }
+
+    document.getElementById("resultArea").classList.toggle("d-none", !hasItem);
+    if (!hasItem) showToast("Minimal isi 1 tamu");
+}
+</script>
+
+</body>
+</html>

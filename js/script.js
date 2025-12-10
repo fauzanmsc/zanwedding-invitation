@@ -551,7 +551,7 @@ async function loadWish() {
         el.innerHTML = `
             <div class="wish-card">
                 <strong>${item.name}</strong><br>
-                <small>${new Date(item.date).toLocaleString()}</small>
+                <!-- <small>${new Date(item.date).toLocaleString()}</small> -->
                 <p>${item.note}</p>
             </div>
         `;
@@ -578,3 +578,50 @@ function showCustomPopup(msg) {
 function closeCustomPopup() {
     document.getElementById("customPopup").style.display = "none";
 }
+
+
+//NAMA OTOMATIS MASIH BISA INPUT
+// document.addEventListener("DOMContentLoaded", function() {
+//     const guestName = document.getElementById("guestName").textContent.trim();
+//     const inputName = document.getElementById("w-name");
+//     inputName.value = guestName;
+// });
+
+//RSVP NAME OTOMATIS
+document.addEventListener("DOMContentLoaded", function() {
+    const guestName = document.getElementById("guestName").textContent.trim();
+    document.getElementById("r-name").value = guestName;
+});
+
+//WISH NAME OTOMATIS
+// document.addEventListener("DOMContentLoaded", function() {
+//     const guestName = document.getElementById("guestName").textContent.trim();
+//     document.getElementById("w-name").value = guestName;
+// });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const inputName = document.getElementById("w-name");
+    const guestNameDiv = document.getElementById("guestName");
+
+    // Cek di localStorage
+    let savedName = localStorage.getItem("guest_name");
+
+    if (savedName && savedName.trim() !== "") {
+        // Jika ada, gunakan nama di localStorage
+        inputName.value = savedName;
+    } else {
+        // Jika tidak ada, ambil dari <div id="guestName">
+        const guestName = guestNameDiv.textContent.trim();
+        inputName.value = guestName;
+
+        // Simpan ke localStorage agar nama tidak hilang
+        localStorage.setItem("guest_name", guestName);
+    }
+
+    // Pastikan setiap kali user submit, nama tidak berubah
+    document.addEventListener("submit", function() {
+        localStorage.setItem("guest_name", inputName.value);
+    });
+});
+
+

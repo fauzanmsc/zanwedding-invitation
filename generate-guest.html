@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Invitation Link Generator — Ozan Creative</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body{padding:1.5rem;background:#f8fafc}
+    .card{border-radius:12px}
+    .result-link{word-break:break-all}
+    .caption-box{white-space:pre-wrap}
+    @media (max-width:576px){
+      .input-grid .col-sm-6{flex:0 0 100%;max-width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="text-center mb-4">
+      <h1 class="h4">Wedding Invitation Link & Caption Generator</h1>
+      <div class="small text-muted">Responsive — Bootstrap 5 — Ozan Creative</div>
+    </div>
+
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">Masukkan hingga 10 Nama</h5>
+        <p class="text-muted small">Isi nama (contoh: Risty Fatmawati). Kosongkan input yang tidak dipakai.</p>
+
+        <div class="row g-2 input-grid">
+          <!-- 10 inputs -->
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 1" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 2" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 3" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 4" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 5" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 6" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 7" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 8" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 9" /></div>
+          <div class="col-12 col-sm-6"><input class="form-control name-input" placeholder="Nama 10" /></div>
+        </div>
+
+        <div class="d-flex gap-2 mt-3 flex-wrap">
+          <button id="generateBtn" class="btn btn-primary">Generate Links & Captions</button>
+          <button id="copyAllLinks" class="btn btn-outline-secondary">Copy All Links</button>
+          <button id="copyAllCaptions" class="btn btn-outline-secondary">Copy All Captions</button>
+          <button id="resetBtn" class="btn btn-danger ms-auto">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultsArea" class="card shadow-sm mb-4 d-none">
+      <div class="card-body">
+        <h5 class="card-title">Hasil</h5>
+        <div id="resultsList" class="list-group"></div>
+      </div>
+    </div>
+
+    <footer class="text-center text-muted small">Spread your happiness with <strong>ozancreative</strong></footer>
+  </div>
+
+<script>
+  const baseUrl = 'https://fauzanmsc.github.io/zanwedding-invitation/';
+
+  function toParam(name){
+    // Trim, collapse spaces, then URL-encode and replace %20 with +
+    const trimmed = name.trim().replace(/\s+/g, ' ');
+    if(!trimmed) return '';
+    return encodeURIComponent(trimmed).replace(/%20/g, '+');
+  }
+
+  function makeCaption(name, url){
+    // The caption text based on the user's provided template
+    return `Kepada Yth.\nBapak/Ibu/Saudara/i\n${name}\n___________________\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.\n\nUntuk informasi detail Acara, Lokasi, dan Waktu lebih lengkap bisa akses link undangan berikut:\n\n${url}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu di acara pernikahan kami.\nKarena keterbatasan jarak dan waktu tidak dapat mengirimkan undangan ini secara langsung, maka melalui e-invitation ini dapat menjadi pengganti undangan resmi sehingga tujuan kami tersampaikan.\n\nHormat kami,\nTullah&Eca\n__________________\n\nSpread your happiness with ozancreative`;
+  }
+
+  function copyText(text){
+    return navigator.clipboard.writeText(text);
+  }
+
+  document.getElementById('generateBtn').addEventListener('click', ()=>{
+    const inputs = Array.from(document.querySelectorAll('.name-input'))
+      .map(i=>i.value)
+      .filter(v=>v && v.trim().length>0)
+      .slice(0,10);
+
+    const resultsList = document.getElementById('resultsList');
+    resultsList.innerHTML = '';
+
+    if(inputs.length === 0){
+      alert('Masukkan minimal 1 nama.');
+      return;
+    }
+
+    inputs.forEach((name, idx)=>{
+      const param = toParam(name);
+      const url = `${baseUrl}?to=${param}`;
+      const caption = makeCaption(name, url);
+
+      const item = document.createElement('div');
+      item.className = 'list-group-item';
+      item.innerHTML = `
+        <div class="d-flex align-items-start gap-3 flex-column flex-md-row">
+          <div class="flex-grow-1">
+            <div class="fw-semibold">${idx+1}. ${escapeHtml(name)}</div>
+            <div class="result-link small mt-1"><a href="${url}" target="_blank">${url}</a></div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-outline-primary btn-sm copy-link">Copy Link</button>
+            <button class="btn btn-outline-secondary btn-sm copy-caption">Copy Caption</button>
+          </div>
+        </div>
+        <div class="mt-2 caption-box small text-muted">${escapeHtml(caption)}</div>
+      `;
+
+      // Attach event listeners after adding to DOM
+      resultsList.appendChild(item);
+
+      const copyLinkBtn = item.querySelector('.copy-link');
+      const copyCaptionBtn = item.querySelector('.copy-caption');
+
+      copyLinkBtn.addEventListener('click', ()=>{
+        copyText(url).then(()=>{
+          showToast(copyLinkBtn, 'Link disalin');
+        }).catch(()=>alert('Gagal menyalin link.'));
+      });
+
+      copyCaptionBtn.addEventListener('click', ()=>{
+        copyText(caption).then(()=>{
+          showToast(copyCaptionBtn, 'Caption disalin');
+        }).catch(()=>alert('Gagal menyalin caption.'));
+      });
+    });
+
+    document.getElementById('resultsArea').classList.remove('d-none');
+  });
+
+  document.getElementById('copyAllLinks').addEventListener('click', ()=>{
+    const anchors = Array.from(document.querySelectorAll('#resultsList a'));
+    if(anchors.length === 0){ alert('Belum ada link. Klik Generate terlebih dahulu.'); return; }
+    const all = anchors.map(a=>a.href).join('\n');
+    copyText(all).then(()=>alert('Semua link disalin ke clipboard')).catch(()=>alert('Gagal menyalin'));
+  });
+
+  document.getElementById('copyAllCaptions').addEventListener('click', ()=>{
+    const captions = Array.from(document.querySelectorAll('.caption-box')).map(c=>c.innerText);
+    if(captions.length === 0){ alert('Belum ada caption. Klik Generate terlebih dahulu.'); return; }
+    copyText(captions.join('\n\n---\n\n')).then(()=>alert('Semua caption disalin ke clipboard')).catch(()=>alert('Gagal menyalin'));
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    document.querySelectorAll('.name-input').forEach(i=>i.value='');
+    document.getElementById('resultsList').innerHTML='';
+    document.getElementById('resultsArea').classList.add('d-none');
+  });
+
+  // small utility: escape HTML to safely render user input in the list
+  function escapeHtml(str){
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;')
+      .replace(/\n/g, '<br>');
+  }
+
+  // tiny in-place toast effect on a button
+  function showToast(btn, text){
+    const orig = btn.innerText;
+    btn.innerText = text;
+    btn.disabled = true;
+    setTimeout(()=>{ btn.innerText = orig; btn.disabled = false; }, 1400);
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
