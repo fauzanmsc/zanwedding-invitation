@@ -209,6 +209,9 @@ body::-webkit-scrollbar {
     height: 100vh;
     z-index: 2
 }
+.red-bugis {
+    color: var(--red-bugis);
+}
 
 .frame {
     width: 100%;
@@ -1277,4 +1280,57 @@ textarea:focus {
         max-width: 100vw
     }
 
+}
+
+.wish-item {
+    margin-bottom: 12px;
+}
+
+.wish-card {
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(2px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+.popup-dialog {
+    background: #111;
+    padding: 25px;
+    border-radius: 22px;
+    width: 90%;
+    max-width: 360px;
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    animation: popOpen .25s ease-out;
+}
+
+@keyframes popOpen {
+    from { transform: scale(0.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.popup-message {
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+.popup-btn {
+    background: #8CE6F0;
+    color: #000;
+    border: none;
+    padding: 10px 22px;
+    float: right;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
 }

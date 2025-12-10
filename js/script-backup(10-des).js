@@ -263,91 +263,91 @@
     // =============================
     // RSVP + WISHES
     // =============================
-    // function load(key) {
-    //     try { return JSON.parse(localStorage.getItem(key) || '[]'); }
-    //     catch { return []; }
-    // }
-    // function save(key, arr) { localStorage.setItem(key, JSON.stringify(arr)); }
-    // function escapeHtml(s) {
-    //     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    // }
+    function load(key) {
+        try { return JSON.parse(localStorage.getItem(key) || '[]'); }
+        catch { return []; }
+    }
+    function save(key, arr) { localStorage.setItem(key, JSON.stringify(arr)); }
+    function escapeHtml(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
 
-    // const rsvpForm = document.getElementById('rsvpForm');
-    // if (rsvpForm) {
-    //     rsvpForm.addEventListener('submit', e => {
-    //         e.preventDefault();
-    //         const f = e.target;
-    //         const data = {
-    //             name: f.name.value.trim(),
-    //             attend: f.attend.value,
-    //             guests: Number(f.guests.value) || 1,
-    //             note: f.note.value.trim(),
-    //             time: new Date().toISOString()
-    //         };
-    //         if (!data.name) {
-    //             Swal.fire('Mohon isi nama', 'Nama wajib diisi', 'warning');
-    //             return;
-    //         }
-    //         const list = load('rsvps');
-    //         list.unshift(data);
-    //         save('rsvps', list);
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Terima kasih',
-    //             text: 'Konfirmasi Anda telah tercatat',
-    //             timer: 1500,
-    //             showConfirmButton: false
-    //         });
-    //         f.reset();
-    //     });
-    // }
+    const rsvpForm = document.getElementById('rsvpForm');
+    if (rsvpForm) {
+        rsvpForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const f = e.target;
+            const data = {
+                name: f.name.value.trim(),
+                attend: f.attend.value,
+                guests: Number(f.guests.value) || 1,
+                note: f.note.value.trim(),
+                time: new Date().toISOString()
+            };
+            if (!data.name) {
+                Swal.fire('Mohon isi nama', 'Nama wajib diisi', 'warning');
+                return;
+            }
+            const list = load('rsvps');
+            list.unshift(data);
+            save('rsvps', list);
+            Swal.fire({
+                icon: 'success',
+                title: 'Terima kasih',
+                text: 'Konfirmasi Anda telah tercatat',
+                timer: 1500,
+                showConfirmButton: false
+            });
+            f.reset();
+        });
+    }
 
-    // const wishForm = document.getElementById('wishForm');
-    // const wishListEl = document.getElementById('wishList');
+    const wishForm = document.getElementById('wishForm');
+    const wishListEl = document.getElementById('wishList');
 
-    // function renderWishes() {
-    //     const items = load('wishes');
-    //     wishListEl.innerHTML = items.length
-    //         ? items.map(it => `
-    //             <div class="wish-card">
-    //                 <div class="wish-meta">
-    //                     <strong>${escapeHtml(it.name)}</strong> • ${it.attend} • ${new Date(it.time).toLocaleString()}
-    //                 </div>
-    //                 <div class="wish-text">${escapeHtml(it.note)}</div>
-    //             </div>`).join('')
-    //         : '<div class="muted">Belum ada ucapan.</div>';
-    // }
+    function renderWishes() {
+        const items = load('wishes');
+        wishListEl.innerHTML = items.length
+            ? items.map(it => `
+                <div class="wish-card">
+                    <div class="wish-meta">
+                        <strong>${escapeHtml(it.name)}</strong> • ${it.attend} • ${new Date(it.time).toLocaleString()}
+                    </div>
+                    <div class="wish-text">${escapeHtml(it.note)}</div>
+                </div>`).join('')
+            : '<div class="muted">Belum ada ucapan.</div>';
+    }
 
-    // if (wishForm) {
-    //     wishForm.addEventListener('submit', e => {
-    //         e.preventDefault();
-    //         const f = e.target;
-    //         const data = {
-    //             name: f.name.value.trim(),
-    //             attend: f.attend.value,
-    //             note: f.note.value.trim(),
-    //             time: new Date().toISOString()
-    //         };
-    //         if (!data.name || !data.note) {
-    //             Swal.fire('Isi lengkap', 'Nama dan ucapan wajib diisi', 'warning');
-    //             return;
-    //         }
-    //         const list = load('wishes');
-    //         list.unshift(data);
-    //         save('wishes', list);
-    //         renderWishes();
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Terkirim',
-    //             text: 'Ucapan Anda telah dikirim',
-    //             timer: 1400,
-    //             showConfirmButton: false
-    //         });
-    //         f.reset();
-    //     });
-    // }
+    if (wishForm) {
+        wishForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const f = e.target;
+            const data = {
+                name: f.name.value.trim(),
+                attend: f.attend.value,
+                note: f.note.value.trim(),
+                time: new Date().toISOString()
+            };
+            if (!data.name || !data.note) {
+                Swal.fire('Isi lengkap', 'Nama dan ucapan wajib diisi', 'warning');
+                return;
+            }
+            const list = load('wishes');
+            list.unshift(data);
+            save('wishes', list);
+            renderWishes();
+            Swal.fire({
+                icon: 'success',
+                title: 'Terkirim',
+                text: 'Ucapan Anda telah dikirim',
+                timer: 1400,
+                showConfirmButton: false
+            });
+            f.reset();
+        });
+    }
 
-    // renderWishes();
+    renderWishes();
 
     // =============================
     // MUSIC CONTROL
@@ -475,106 +475,3 @@ document.querySelectorAll('.gift-card .btn-copy').forEach(button => {
         });
     });
 });
-
-//RSVP BARU
-const scriptURL = "https://script.google.com/macros/s/AKfycbyWJ-7Xtjp-97xI4laXPciMRbsVUNrRAxtGP5PZleixaUWVpfuUi2bi62n12YkZVeE8kQ/exec";
-
-// =========================
-// SUBMIT RSVP
-// =========================
-document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-        type: "rsvp",
-        name: document.getElementById("r-name").value,
-        attend: document.getElementById("r-attend").value,
-        guests: document.getElementById("r-guests").value,
-    };
-
-    await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(data),
-    });
-
-    showCustomPopup("Terima kasih! Konfirmasi kehadiran berhasil dikirim.");
-    e.target.reset();
-});
-
-
-// =========================
-// SUBMIT WISH
-// =========================
-document.getElementById("wishForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-        type: "wish",
-        name: document.getElementById("w-name").value,
-        note: document.getElementById("w-note").value,
-    };
-
-    await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(data),
-    });
-
-    showCustomPopup("Ucapan berhasil dikirim.");
-    e.target.reset();
-    loadWish(); // refresh list
-});
-
-
-// =========================
-// LOAD WISH LIST (Riwayat Ucapan)
-// =========================
-async function loadWish() {
-    const response = await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify({ type: "getWish" }),
-    });
-
-    const data = await response.json();
-    const list = document.getElementById("wishList");
-
-    list.innerHTML = "";
-
-    if (data.length === 0) {
-        list.innerHTML = "<p>Belum ada ucapan.</p>";
-        return;
-    }
-
-    data.forEach(item => {
-        const el = document.createElement("div");
-        el.classList.add("wish-item");
-
-        el.innerHTML = `
-            <div class="wish-card">
-                <strong>${item.name}</strong><br>
-                <small>${new Date(item.date).toLocaleString()}</small>
-                <p>${item.note}</p>
-            </div>
-        `;
-
-        list.appendChild(el);
-    });
-}
-
-// Load saat halaman pertama dibuka
-document.addEventListener("DOMContentLoaded", loadWish);
-
-
-//POPUP KUSTOM
-function showCustomPopup(msg) {
-    document.getElementById("popupText").innerText = msg;
-    document.getElementById("customPopup").style.display = "flex";
-
-    // Auto close
-    setTimeout(() => {
-        closeCustomPopup();
-    }, 2000);
-}
-
-function closeCustomPopup() {
-    document.getElementById("customPopup").style.display = "none";
-}

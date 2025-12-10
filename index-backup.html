@@ -433,7 +433,7 @@
                     <section id="rsvp" class="page section">
                         <div class="page-scroll">
                             <div class="page-inner">
-                                <h2 class="red-bugis">RSVP - Konfirmasi Kehadiran</h2>
+                                <h2>RSVP - Konfirmasi Kehadiran</h2>
                                 <form id="rsvpForm" class="form card">
                                     <label for="r-name">Nama</label>
                                     <input id="r-name" name="name" type="text" placeholder="Nama lengkap" required>
@@ -449,6 +449,10 @@
                                     <label for="r-guests">Jumlah Tamu</label>
                                     <input id="r-guests" name="guests" type="number" min="1" max="10" value="1">
 
+                                    <label for="r-note">Catatan / Ucapan (opsional)</label>
+                                    <textarea id="r-note" name="note" rows="3"
+                                        placeholder="Ucapan atau catatan... (opsional)"></textarea>
+
                                     <div class="form-actions">
                                         <button type="submit" class="btn primary"><i
                                                 class="fa-solid fa-paper-plane"></i>
@@ -458,10 +462,17 @@
 
                                 <hr>
 
-                                <h2 class="red-bugis">Kirim Ucapan &amp; Doa</h2>
+                                <h3>Kirim Ucapan &amp; Doa</h3>
                                 <form id="wishForm" class="form card">
                                     <label for="w-name">Nama</label>
                                     <input id="w-name" name="name" type="text" placeholder="Nama" required>
+
+                                    <label for="w-attend">Kehadiran</label>
+                                    <select id="w-attend" name="attend">
+                                        <option value="Hadir">Hadir</option>
+                                        <option value="Berhalangan">Berhalangan</option>
+                                        <option value="Mungkin">Mungkin</option>
+                                    </select>
 
                                     <label for="w-note">Ucapan</label>
                                     <textarea id="w-note" name="note" rows="3"
@@ -474,7 +485,7 @@
                                     </div>
                                 </form>
 
-                                <div class="wish-history card mt-3">
+                                <div class="wish-history card">
                                     <h4>Riwayat Ucapan</h4>
                                     <div id="wishList" class="wish-list"></div>
                                 </div>
@@ -790,14 +801,6 @@
 
 
     </div>
-
-    <div id="customPopup" class="popup-overlay">
-    <div class="popup-dialog">
-        <div id="popupText" class="popup-message"></div>
-        <button class="popup-btn" onclick="closeCustomPopup()">OK</button>
-    </div>
-</div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/script.js?v=2"></script>
