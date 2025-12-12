@@ -476,7 +476,8 @@ document.querySelectorAll('.gift-card .btn-copy').forEach(button => {
     });
 });
 
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwSlO7QA-xqJTzPlXmtPnXDLIx-7OsyKDDdlWkrT42x7pQ8r9pHR15gaLnpsgxhcqpe/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby9f5jTGKgWIRKf2yusPAKe4sWjd3kjC0_BvL2GlitGWyCADF3IRggz9EQBnOPXEvve/exec";
+
 
 // ========== POPUP CUSTOM ==========
 function showCustomPopup(msg) {
@@ -508,18 +509,34 @@ document.getElementById("wishForm")?.addEventListener("submit", async (e) => {
     });
 
     showCustomPopup("Ucapan berhasil dikirim.");
-    f.reset();
 
+    f.reset();
     renderWishList();
 });
 
 
+
+// ================== LOAD WISH LIST ==================
 // ================== LOAD WISH LIST ==================
 async function loadWishes() {
     const res = await fetch(WEB_APP_URL);
     return await res.json();
 }
 
+// Ambil 2 initial dari nama
+function getInitials(name) {
+    if (!name) return "?";
+
+    const parts = name.trim().split(" ");
+
+    if (parts.length >= 2) {
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+    } else {
+        return parts[0].substring(0, 2).toUpperCase();
+    }
+}
+
+// Render wish list
 async function renderWishList() {
     const listEl = document.getElementById("wishList");
     const data = await loadWishes();
@@ -530,39 +547,50 @@ async function renderWishList() {
     }
 
     listEl.innerHTML = data
-        .map(w => `
-            <div class="wish-card">
-                <div id="initials-wish-guest">
-                    M
-                </div>
+        .map(w => {
+            const nama = w[0];
+            const status = w[1]; // hadir / tidak
+            const ucapan = w[2];
+            const initials = getInitials(nama);
 
+            const isHadir = status.toLowerCase() === "hadir";
 
-                <div style="flex:1;">
-                    <div style="display:flex; align-items:center; gap:10px;">
+            const badgeClass = isHadir ? "badge-hadir" : "badge-tidak";
+            const badgeIcon = isHadir
+                ? `<i class="fa-solid fa-circle-check"></i>`
+                : `<i class="fa-solid fa-circle-xmark"></i>`;
 
-                        <!-- Nama -->
-                            <div class="nama-guest-wish">
-                                ${w[0]}
-                            </div>
+            return `
+                <div class="wish-card">
 
-                        <!-- Badge Hadir -->
-                            <span class="badge-hadir">
-                                <i class="fa-solid fa-circle-check"></i>
-                                Hadir
+                    <div class="initials-wish-guest">${initials}</div>
+
+                    <div style="flex:1;">
+
+                        <div class="nama-badge-wish">
+
+                            <div class="nama-guest-wish">${nama}</div>
+
+                            <span class="${badgeClass}">
+                                ${badgeIcon}
+                                ${status}
                             </span>
-                    </div>   
 
-                
+                        </div>
 
-                            <!-- Isi Ucapan -->
+                        <div class="wish-text">${ucapan}</div>
 
-                <div class="wish-text">${w[1]}</div>
-            </div>
-        `)
+                    </div>
+
+                </div>
+            `;
+        })
         .join("");
 }
 
-renderWishList(); // load on page open
+renderWishList();
+
+
 
 
 //POPUP KUSTOM
@@ -582,16 +610,93 @@ function closeCustomPopup() {
 
 
 // NAMA OTOMATIS MASIH BISA INPUT
-// document.addEventListener("DOMContentLoaded", function() {
-//     const guestName = document.getElementById("guestName").textContent.trim();
-//     const inputName = document.getElementById("r-name");
-//     inputName.value = guestName;
-// });
-
-document.addEventListener("DOMContentLoaded", function() {
-    const guestName = document.getElementById("guestName").textContent.trim();
+document.addEventListener("DOMContentLoaded", function () {
+    const guestName = document.getElementById("guestName")?.textContent.trim();
     const inputName = document.getElementById("w-name");
-    inputName.value = guestName;
+
+    if (guestName && inputName) {
+        // Jika kosong, isi dengan guestName
+        if (!inputName.value.trim()) {
+            inputName.value = guestName;
+        }
+    }
 });
 
+
+//LIGHTBOX FULLSCREEN
+document.addEventListener("DOMContentLoaded", function () {
+
+    const lightbox     = document.getElementById("lightbox");
+    const lightboxImg  = document.getElementById("lightbox-img");
+    const closeBtn     = document.querySelector(".lightbox-close");
+    const prevBtn      = document.querySelector(".lightbox-prev");
+    const nextBtn      = document.querySelector(".lightbox-next");
+
+    const galleryLinks = document.querySelectorAll('a[data-lightbox="gallery"]');
+    let currentIndex = 0;
+
+    // Buka lightbox
+    function openLightbox(index) {
+        currentIndex = index;
+        lightboxImg.src = galleryLinks[index].getAttribute("href");
+        lightbox.style.display = "flex";
+    }
+
+    // Tutup
+    function closeLightbox() {
+        lightbox.style.display = "none";
+    }
+
+    // Next
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % galleryLinks.length;
+        openLightbox(currentIndex);
+    }
+
+    // Prev
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + galleryLinks.length) % galleryLinks.length;
+        openLightbox(currentIndex);
+    }
+
+    // Event pada gambar
+    galleryLinks.forEach((link, index) => {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            openLightbox(index);
+        });
+    });
+
+    // Tombol
+    closeBtn.addEventListener("click", closeLightbox);
+    nextBtn.addEventListener("click", nextImage);
+    prevBtn.addEventListener("click", prevImage);
+
+    // Klik area gelap untuk close
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // ================================
+    //      SWIPE SUPPORT MOBILE
+    // ================================
+    let startX = 0;
+
+    lightbox.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    lightbox.addEventListener("touchend", (e) => {
+        let endX = e.changedTouches[0].clientX;
+        let diff = startX - endX;
+
+        if (diff > 50) {
+            nextImage();  // swipe kiri
+        } 
+        else if (diff < -50) {
+            prevImage();  // swipe kanan
+        }
+    });
+
+});
 

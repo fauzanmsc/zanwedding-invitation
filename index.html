@@ -48,6 +48,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+        <!-- LIGHTBOX CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
+<!-- LIGHTBOX JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+
 </head>
 
 <body>
@@ -374,54 +381,69 @@
                                     style=" margin: 50px 0 30px 0; font-size: 38px;">Our Gallery
                                 </div>
                                 <div class="gallery-custom my-4">
-                                    <!-- ROW 1 -->
+                                   
+
                                     <div class="row mb-3">
-                                        <div class="col-12">
-                                            <div class="frame">
-                                                <img src="assets/photos/photo-01.png" class="img-fluid" alt="Photo 01">
-                                            </div>
-                                        </div>
-                                    </div>
+    <div class="col-12">
+        <a href="assets/photos/photo-01.png" data-lightbox="gallery">
+            <div class="frame">
+                <img src="assets/photos/photo-01.png" class="img-fluid" alt="Photo 01">
+            </div>
+        </a>
+    </div>
+</div>
 
-                                    <!-- ROW 2 -->
-                                    <!-- ROW 2 -->
-                                    <div class="row g-3 flex-nowrap">
+<div class="row g-3 flex-nowrap">
 
-                                        <!-- LEFT GRID 2x2 -->
-                                        <div class="col-8">
-                                            <div class="row g-3">
-                                                <div class="col-6">
-                                                    <div class="frame">
-                                                        <img src="assets/photos/photo-02.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="frame">
-                                                        <img src="assets/photos/photo-03.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="frame">
-                                                        <img src="assets/photos/photo-04.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                                <div class="col-6">
-                                                    <div class="frame">
-                                                        <img src="assets/photos/photo-05.png" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+    <div class="col-8">
+        <div class="row g-3">
 
-                                        <!-- RIGHT LARGE -->
-                                        <div class="col-4">
-                                            <div class="frame h-100">
-                                                <img src="assets/photos/photo-06.png"
-                                                    class="img-fluid h-100 object-fit-cover" alt="Photo 06">
-                                            </div>
-                                        </div>
+            <div class="col-6">
+                <a href="assets/photos/photo-02.png" data-lightbox="gallery">
+                    <div class="frame">
+                        <img src="assets/photos/photo-02.png" class="img-fluid">
+                    </div>
+                </a>
+            </div>
 
-                                    </div>
+            <div class="col-6">
+                <a href="assets/photos/photo-03.png" data-lightbox="gallery">
+                    <div class="frame">
+                        <img src="assets/photos/photo-03.png" class="img-fluid">
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6">
+                <a href="assets/photos/photo-04.png" data-lightbox="gallery">
+                    <div class="frame">
+                        <img src="assets/photos/photo-04.png" class="img-fluid">
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-6">
+                <a href="assets/photos/photo-05.png" data-lightbox="gallery">
+                    <div class="frame">
+                        <img src="assets/photos/photo-05.png" class="img-fluid">
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <a href="assets/photos/photo-06.png" data-lightbox="gallery">
+            <div class="frame h-100">
+                <img src="assets/photos/photo-06.png" class="img-fluid h-100 object-fit-cover">
+            </div>
+        </a>
+    </div>
+
+</div>
+
+
 
 
                                 </div>
@@ -488,7 +510,7 @@
     <div class="label-wish" for="w-name">Nama :</div>
 
     <!-- Input Nama -->
-    <input id="w-name" class="wish-input" name="name" type="text" readonly>
+    <input id="w-name" class="wish-input" name="name" type="text">
 
 
         <!-- Label Kehadiran -->
@@ -496,8 +518,8 @@
 
     <select id="r-attend" name="attend">
         <option value="" disabled selected>Pilih Kehadiran</option>
-        <option value="hadir">Hadir</option>
-        <option value="tidak">Tidak Hadir</option>
+        <option value="Hadir">Hadir</option>
+        <option value="Tidak Hadir">Tidak Hadir</option>
     </select>
 
 
@@ -836,6 +858,25 @@
         <button class="popup-btn" onclick="closeCustomPopup()">OK</button>
     </div>
 </div>
+
+<!-- ================= LIGHTBOX FULLSCREEN ================= -->
+<div id="lightbox" class="lightbox">
+    
+    <!-- Tombol Close -->
+    <span class="lightbox-close">&times;</span>
+
+    <!-- Tombol Prev -->
+    <span class="lightbox-prev">&#10094;</span>
+
+    <!-- Gambar -->
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Preview">
+
+    <!-- Tombol Next -->
+    <span class="lightbox-next">&#10095;</span>
+
+</div>
+<!-- ======================================================= -->
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

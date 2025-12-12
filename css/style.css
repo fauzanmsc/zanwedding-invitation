@@ -1064,8 +1064,74 @@ textarea:focus {
     border-radius: 18px;
     display:flex;
             align-items:flex-start;
-            gap:18px;
+            gap:5px;
             box-shadow:0 4px 10px rgba(0,0,0,0.06);
+}
+
+/* ===== LIGHTBOX FULLSCREEN ===== */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    backdrop-filter: blur(6px);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lightbox-img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 14px;
+    animation: zoomIn .3s ease;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 42px;
+    color: white;
+    cursor: pointer;
+    z-index: 20;
+    font-weight: 300;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 48px;
+    cursor: pointer;
+    padding: 12px;
+    z-index: 20;
+    user-select: none;
+    opacity: .7;
+    transition: .2s;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    opacity: 1;
+}
+
+.lightbox-prev {
+    left: 20px;
+}
+
+.lightbox-next {
+    right: 20px;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(.85); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
 }
 
 .wish-meta {
@@ -1074,43 +1140,59 @@ textarea:focus {
     margin-bottom: 6px
 }
 
-#initials-wish-guest {
-    width:55px;
-                        height:55px;
-                        border-radius:50%;
-                        background:#2b1e1b;
-                        color:#fff;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:24px;
-                        font-weight:700;
-                        text-transform:uppercase;
-}
 
 .nama-guest-wish{
     font-weight:700;
-    font-size:20px;
+    font-size:14px;
     color:#2b1e1b;
 }
 
-.badge-hadir{
-background:#118a3c;
-                                    color:#fff;
-                                    font-size:14px;
-                                    padding:4px 10px;
-                                    border-radius:8px;
-                                    display:inline-flex;
-                                    align-items:center;
-                                    gap:4px;
-}
-.wish-text{
-margin-top:6px;
-                font-size:18px;
-                color:#3a2f2b;
-                line-height:1.4;
+.badge-hadir {
+    background:#d4f8d4;
+    color:#2c8a2c;
+    padding:3px 10px;
+    border-radius:8px;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    gap:4px;
 }
 
+.badge-tidak {
+    background:#ffd6d6;
+    color:#c62828;
+    padding:3px 10px;
+    border-radius:8px;
+    font-size:12px;
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.initials-wish-guest {
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:var(--red-bugis-gradient);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:600;
+    margin-right:12px;
+    border: 2px solid var(--yellow-bugis);
+}
+
+.wish-text{
+margin-top:3px;
+                font-size:14px;
+                color:#3a2f2b;
+                line-height:1.4;
+                text-align: left;
+}
+
+.nama-badge-wish{
+display:flex; align-items:center; gap:10px; justify-content: space-between;
+}
 #r-attend{
     width:100%;
             padding:10px 15px;

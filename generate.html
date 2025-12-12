@@ -1,36 +1,186 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Invitation Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Zan Wedding Invitation Link & Caption Generator</title>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body { background:#f5f6fa; }
-        .card { border-radius:20px; }
-        .toast-container { position: fixed; top:20px; left:50%; transform:translateX(-50%); z-index:9999; }
+        :root {
+            --radius: 18px;
+            --soft-shadow: 0 10px 30px rgba(0,0,0,0.09);
+            --soft-shadow-small: 0 4px 12px rgba(0,0,0,0.07);
+            --primary: #4e73df;
+            --bg-soft: #f5f7fb;
+        }
+
+        body {
+            background: var(--bg-soft);
+            font-family: 'Inter', sans-serif;
+            color: #1d1d1d;
+        }
+
+        h3, h5 {
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+
+        /* --- WRAPPER CARD --- */
+        .card-modern {
+            border-radius: var(--radius);
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: saturate(180%) blur(20px);
+            box-shadow: var(--soft-shadow);
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* --- INPUT MODERN --- */
+        .input-modern {
+            border-radius: 12px !important;
+            background: #fff !important;
+            border: 1.3px solid #e3e6ed !important;
+            padding: 10px 16px !important;
+            font-size: 14px;
+            transition: 0.25s ease;
+        }
+        .input-modern:focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 4px rgba(78,115,223,0.18) !important;
+        }
+
+        /* --- BUTTON MODERN --- */
+        .btn-modern {
+            border-radius: 14px;
+            padding: 12px 18px;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+        }
+        .btn-soft {
+            background: #eef1f7;
+            border: 1px solid #d3d7e2;
+            color: #333;
+        }
+        .btn-soft:hover {
+            background: #e5e8f0;
+        }
+
+        /* --- RESULT CARD --- */
+        .result-card {
+            border-radius: var(--radius);
+            background: #ffffff;
+            padding: 22px;
+            box-shadow: var(--soft-shadow-small);
+            border: 1px solid #efefef;
+            transition: 0.2s;
+        }
+        .result-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--soft-shadow);
+        }
+
+        /* --- TOAST --- */
+        .toast-container {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+        }
+
+        /* --- RESPONSIVE ADJUSTMENT --- */
+        @media (max-width: 575px) {
+            h3 { font-size: 1.55rem; }
+            .card-modern { padding: 22px; }
+            .input-modern { font-size: 14px; padding: 13px 14px; }
+            .result-card { padding: 18px; }
+        }
+        .footer-modern {
+    opacity: 0.8;
+    font-size: 14px;
+    backdrop-filter: saturate(160%) blur(12px);
+    padding-bottom: 25px;
+}
+.footer-modern small {
+    font-weight: 500;
+    color: #555 !important;
+}
+/* ————— TWO COLUMN LAYOUT FOR DESKTOP ————— */
+@media (min-width: 992px) {
+    #layoutRow {
+        display: flex;
+        gap: 30px;
+    }
+    #layoutRow > div {
+        display: block;
+    }
+}
+
+/* ————— ONE COLUMN STACK FOR MOBILE/TABLET ————— */
+@media (max-width: 991px) {
+    #layoutRow {
+        display: block;
+    }
+    #resultArea {
+        margin-top: 25px;
+    }
+}
+
+/* Pastikan dua kolom rapi */
+@media (min-width: 992px) {
+    .card-modern {
+        min-height: 100%;
+    }
+}
+
+
     </style>
 </head>
+
 <body>
-<div class="container py-4">
-    <h3 class="text-center mb-4 fw-bold">Wedding Invitation Generator</h3>
 
-    <div class="card shadow p-4">
-        <h5 class="fw-bold mb-3">Input Tamu</h5>
-        <p class="text-muted">Masukkan nama tamu & nomor WA. Link dan pesan akan otomatis di-generate.</p>
+<div class="container py-4" style="max-width: 1250px;">
 
-        <div id="guestInputs"></div>
+    <h3 class="text-center mb-4">Wedding Invitation Generator</h3>
 
-        <button class="btn btn-primary w-100 mt-3" onclick="generateResult()">Generate</button>
+    <div class="row g-4 align-items-start">
+
+        <!-- LEFT SIDE -->
+        <div class="col-12 col-lg-6">
+            <div class="card-modern h-100">
+                <h5 class="mb-1">Input Tamu</h5>
+                <p class="text-muted mb-4">Masukkan nama & nomor WA tamu undangan.</p>
+
+                <div id="guestInputs"></div>
+
+                <button class="btn btn-primary btn-modern w-100 mt-3" style="background: linear-gradient(0deg, #450202, #810000);
+            border: none;" onclick="generateResult()">
+                    Generate Undangan
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="col-12 col-lg-6">
+            <div id="resultArea" class="d-none card-modern h-100">
+                <h5 class="fw-bold mb-3">Hasil Generate</h5>
+                <div id="resultList"></div>
+            </div>
+        </div>
+
     </div>
 
-    <div id="resultArea" class="d-none mt-4">
-        <h5 class="fw-bold mb-3">Hasil</h5>
-        <div id="resultList"></div>
-    </div>
 </div>
 
+
 <div class="toast-container"></div>
+
+<footer class="footer-modern text-center py-3">
+    <small id="copyright-text" class="text-muted"></small>
+</footer>
 
 <script>
 const baseUrl = "https://fauzanmsc.github.io/zanwedding-invitation/?to=";
@@ -39,9 +189,9 @@ const toastContainer = document.querySelector('.toast-container');
 function showToast(msg) {
     const t = document.createElement('div');
     t.className = "toast align-items-center text-bg-dark border-0 show mb-2";
-    t.innerHTML = `<div class="d-flex"><div class="toast-body">${msg}</div></div>`;
+    t.innerHTML = `<div class="d-flex px-3 py-2"><div class="toast-body">${msg}</div></div>`;
     toastContainer.appendChild(t);
-    setTimeout(()=> t.remove(), 2000);
+    setTimeout(() => t.remove(), 1900);
 }
 
 function normalizePhone(phone) {
@@ -53,29 +203,35 @@ function normalizePhone(phone) {
 
 function createGuestInputs() {
     let html = "";
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 7; i++) {
         html += `
             <div class="row g-3 mb-3">
-                <div class="col-12 col-md-6">
-                    <input class="form-control" id="name${i}" placeholder="Nama Tamu ${i}">
+                <div class="col-sm-6">
+                    <input class="form-control input-modern" id="name${i}" placeholder="Nama Tamu ${i}">
                 </div>
-                <div class="col-12 col-md-6">
-                    <input class="form-control" id="wa${i}" placeholder="Nomor WA (contoh 0812xxxxx)">
+                <div class="col-sm-6">
+                    <input class="form-control input-modern" id="wa${i}" placeholder="Nomor WA (0812xxx)">
                 </div>
             </div>
         `;
     }
     document.getElementById("guestInputs").innerHTML = html;
 }
-
 createGuestInputs();
+
+function copyCaption(text) {
+    navigator.clipboard.writeText(text).then(() => showToast("Caption berhasil disalin"));
+}
+function copyLink(link) {
+    navigator.clipboard.writeText(link).then(() => showToast("Link berhasil disalin"));
+}
 
 function generateResult() {
     const list = document.getElementById("resultList");
     list.innerHTML = "";
     let hasItem = false;
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 7; i++) {
         const name = document.getElementById(`name${i}`).value.trim();
         const wa = document.getElementById(`wa${i}`).value.trim();
 
@@ -85,15 +241,43 @@ function generateResult() {
         const encodedName = encodeURIComponent(name.replace(/ /g, "+"));
         const link = baseUrl + encodedName;
         const waNumber = normalizePhone(wa);
-        const caption = `Kepada Yth. ${name}%0A%0ATanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.%0A%0ASilakan akses undangan:%0A${link}%0A%0AHormat kami,%0ATullah & Eca`;
+
+        const caption =
+`Assalamu%E2%80%99alaikum Warahmatullahi Wabarakatuh%0A%0A` +
+
+`Bismillahirrahmanirrahim%0A` +
+`Dengan memohon Ridho serta Rahmat Allah Subhanahu Wa Ta%E2%80%99ala, perkenankan kami mengundang Bapak/Ibu/Saudara(i)%0A%0A` +
+
+`Untuk menghadiri acara pernikahan kami:%0A%0A` +
+
+`%F0%9F%93%85%20%20MINGGU%2C%2021%20DESEMBER%202025%0A` +   // 📅
+`%E2%8F%B0%20%20Pukul%2010.00%20Wita%0A` +                 // ⏰
+`%F0%9F%93%8D%20%20Masjid%20To%E2%80%99do%20Lentu%2C%20Desa%20Lentu%2C%20Dusun%20Ta%E2%80%99binjai%2C%20Kec.%20Bontoramba%2C%20Kab.%20Jeneponto%0A%0A` + // 📍
+
+`Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi:%0A` +
+`${encodeURIComponent(link)}%0A%0A` +
+
+`Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.%0A` +
+`Mohon maaf perihal undangan hanya dibagikan melalui pesan ini.%0A%0A` +
+
+`Terima kasih banyak atas perhatiannya.%0A%0A` +
+
+`Kami yang Berbahagia%0A` +
+`Tullah%20%26%20Eca`;
+
+
         const waShare = `https://wa.me/${waNumber}?text=${caption}`;
+        const decodedCaption = decodeURIComponent(caption);
 
         list.innerHTML += `
-            <div class="card p-3 shadow-sm mb-3">
-                <h6 class="fw-bold">${name}</h6>
-                <small class="text-muted">WA: ${waNumber}</small><br>
-                <div class="mt-2 d-flex gap-2">
-                    <a class="btn btn-success btn-sm" href="${waShare}" target="_blank">Share WA</a>
+            <div class="result-card mb-3">
+                <h6 class="fw-bold mb-1">${name}</h6>
+                <small class="text-muted">WA: ${waNumber}</small>
+
+                <div class="mt-3 d-flex flex-wrap gap-2">
+                    <a class="btn btn-success btn-modern btn-sm" href="${waShare}" target="_blank">Share WA</a>
+                    <button class="btn btn-dark btn-modern btn-sm" onclick="copyCaption(\`${decodedCaption}\`)">Copy Caption</button>
+                    <button class="btn btn-soft btn-modern btn-sm" onclick="copyLink('${link}')">Copy Link</button>
                 </div>
             </div>
         `;
@@ -102,7 +286,12 @@ function generateResult() {
     document.getElementById("resultArea").classList.toggle("d-none", !hasItem);
     if (!hasItem) showToast("Minimal isi 1 tamu");
 }
+
+// Auto Update Year
+    document.getElementById("copyright-text").innerHTML =
+        `&copy; ${new Date().getFullYear()} Ozan Creative — All Rights Reserved`;
 </script>
+
 
 </body>
 </html>
