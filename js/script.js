@@ -476,92 +476,93 @@ document.querySelectorAll('.gift-card .btn-copy').forEach(button => {
     });
 });
 
-//RSVP BARU
-const scriptURL = "https://script.google.com/macros/s/AKfycbyWJ-7Xtjp-97xI4laXPciMRbsVUNrRAxtGP5PZleixaUWVpfuUi2bi62n12YkZVeE8kQ/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwSlO7QA-xqJTzPlXmtPnXDLIx-7OsyKDDdlWkrT42x7pQ8r9pHR15gaLnpsgxhcqpe/exec";
 
-// =========================
-// SUBMIT RSVP
-// =========================
-document.getElementById("rsvpForm").addEventListener("submit", async (e) => {
+// ========== POPUP CUSTOM ==========
+function showCustomPopup(msg) {
+    document.getElementById("popupText").innerText = msg;
+    document.getElementById("customPopup").style.display = "flex";
+
+    setTimeout(closeCustomPopup, 2000);
+}
+
+function closeCustomPopup() {
+    document.getElementById("customPopup").style.display = "none";
+}
+
+
+// ================== SUBMIT WISH ==================
+document.getElementById("wishForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const f = e.target;
 
-    const data = {
-        type: "rsvp",
-        name: document.getElementById("r-name").value,
-        attend: document.getElementById("r-attend").value,
-        guests: document.getElementById("r-guests").value,
-    };
+    const formData = new URLSearchParams();
+    formData.append("action", "wish");
+    formData.append("name", f.name.value);
+    formData.append("attend", f.attend.value);
+    formData.append("note", f.note.value);
 
-    await fetch(scriptURL, {
+    await fetch(WEB_APP_URL, {
         method: "POST",
-        body: JSON.stringify(data),
-    });
-
-    showCustomPopup("Terima kasih! Konfirmasi kehadiran berhasil dikirim.");
-    e.target.reset();
-});
-
-
-// =========================
-// SUBMIT WISH
-// =========================
-document.getElementById("wishForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const data = {
-        type: "wish",
-        name: document.getElementById("w-name").value,
-        note: document.getElementById("w-note").value,
-    };
-
-    await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(data),
+        body: formData
     });
 
     showCustomPopup("Ucapan berhasil dikirim.");
-    e.target.reset();
-    loadWish(); // refresh list
+    f.reset();
+
+    renderWishList();
 });
 
 
-// =========================
-// LOAD WISH LIST (Riwayat Ucapan)
-// =========================
-async function loadWish() {
-    const response = await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify({ type: "getWish" }),
-    });
+// ================== LOAD WISH LIST ==================
+async function loadWishes() {
+    const res = await fetch(WEB_APP_URL);
+    return await res.json();
+}
 
-    const data = await response.json();
-    const list = document.getElementById("wishList");
+async function renderWishList() {
+    const listEl = document.getElementById("wishList");
+    const data = await loadWishes();
 
-    list.innerHTML = "";
-
-    if (data.length === 0) {
-        list.innerHTML = "<p>Belum ada ucapan.</p>";
+    if (!data || data.length === 0) {
+        listEl.innerHTML = `<div class="muted">Belum ada ucapan.</div>`;
         return;
     }
 
-    data.forEach(item => {
-        const el = document.createElement("div");
-        el.classList.add("wish-item");
-
-        el.innerHTML = `
+    listEl.innerHTML = data
+        .map(w => `
             <div class="wish-card">
-                <strong>${item.name}</strong><br>
-                <!-- <small>${new Date(item.date).toLocaleString()}</small> -->
-                <p>${item.note}</p>
-            </div>
-        `;
+                <div id="initials-wish-guest">
+                    M
+                </div>
 
-        list.appendChild(el);
-    });
+
+                <div style="flex:1;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+
+                        <!-- Nama -->
+                            <div class="nama-guest-wish">
+                                ${w[0]}
+                            </div>
+
+                        <!-- Badge Hadir -->
+                            <span class="badge-hadir">
+                                <i class="fa-solid fa-circle-check"></i>
+                                Hadir
+                            </span>
+                    </div>   
+
+                
+
+                            <!-- Isi Ucapan -->
+
+                <div class="wish-text">${w[1]}</div>
+            </div>
+        `)
+        .join("");
 }
 
-// Load saat halaman pertama dibuka
-document.addEventListener("DOMContentLoaded", loadWish);
+renderWishList(); // load on page open
 
 
 //POPUP KUSTOM
@@ -580,48 +581,17 @@ function closeCustomPopup() {
 }
 
 
-//NAMA OTOMATIS MASIH BISA INPUT
+// NAMA OTOMATIS MASIH BISA INPUT
 // document.addEventListener("DOMContentLoaded", function() {
 //     const guestName = document.getElementById("guestName").textContent.trim();
-//     const inputName = document.getElementById("w-name");
+//     const inputName = document.getElementById("r-name");
 //     inputName.value = guestName;
 // });
 
-//RSVP NAME OTOMATIS
 document.addEventListener("DOMContentLoaded", function() {
     const guestName = document.getElementById("guestName").textContent.trim();
-    document.getElementById("r-name").value = guestName;
-});
-
-//WISH NAME OTOMATIS
-// document.addEventListener("DOMContentLoaded", function() {
-//     const guestName = document.getElementById("guestName").textContent.trim();
-//     document.getElementById("w-name").value = guestName;
-// });
-
-document.addEventListener("DOMContentLoaded", function() {
     const inputName = document.getElementById("w-name");
-    const guestNameDiv = document.getElementById("guestName");
-
-    // Cek di localStorage
-    let savedName = localStorage.getItem("guest_name");
-
-    if (savedName && savedName.trim() !== "") {
-        // Jika ada, gunakan nama di localStorage
-        inputName.value = savedName;
-    } else {
-        // Jika tidak ada, ambil dari <div id="guestName">
-        const guestName = guestNameDiv.textContent.trim();
-        inputName.value = guestName;
-
-        // Simpan ke localStorage agar nama tidak hilang
-        localStorage.setItem("guest_name", guestName);
-    }
-
-    // Pastikan setiap kali user submit, nama tidak berubah
-    document.addEventListener("submit", function() {
-        localStorage.setItem("guest_name", inputName.value);
-    });
+    inputName.value = guestName;
 });
 
 

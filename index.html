@@ -433,7 +433,7 @@
                     <section id="rsvp" class="page section">
                         <div class="page-scroll">
                             <div class="page-inner">
-                                <h2 class="red-bugis">RSVP - Konfirmasi Kehadiran</h2>
+                                <!-- <h2 class="red-bugis">RSVP - Konfirmasi Kehadiran</h2>
                                 <form id="rsvpForm" class="form card">
                                     <label for="r-name">Nama</label>
                                     <input id="r-name" name="name" type="text" placeholder="Nama lengkap" required>
@@ -456,15 +456,22 @@
                                     </div>
                                 </form>
 
-                                <hr>
+                                <hr> -->
 
-                                <h2 class="red-bugis">Kirim Ucapan &amp; Doa</h2>
-                                <form id="wishForm" class="form card">
+                                <div class="header-row" style=" margin: 40px 0 10px 0;">
+                                    <div class="text-script-02 text-bugis-gradient"
+                                        style="font-size: 38px; font-weight: 600; margin-bottom: -5px;">Best Wishes
+                                    </div>
+                                    <div class="text-description black">
+                                        Sampaikan do'a, salam, atau ucapan <br>kepada kedua mempelai.
+                                    </div>
+                                </div>
+                                <!-- <form id="wishForm" class="form card">
                                     <label for="w-name">Nama</label>
-                                    <input id="w-name" name="name" type="text" placeholder="Nama lengkap" required readonly>
+                                    <input id="w-name" name="name" type="text" placeholder="Nama lengkap" required readonly> -->
                                     <!-- <input id="w-name" name="name" type="text" placeholder="Nama" required> -->
 
-                                    <label for="w-note">Ucapan</label>
+                                    <!-- <label for="w-note">Ucapan</label>
                                     <textarea id="w-note" name="note" rows="3"
                                         placeholder="Tulis ucapan, doa, atau pesan..." required></textarea>
 
@@ -473,12 +480,43 @@
                                                 class="fa-solid fa-comment-dots"></i>
                                             Kirim Ucapan</button>
                                     </div>
-                                </form>
+                                </form> -->
 
-                                <div class="wish-history card mt-3">
-                                    <h4>Riwayat Ucapan</h4>
+                                <form id="wishForm">
+    
+    <!-- Label Nama -->
+    <div class="label-wish" for="w-name">Nama :</div>
+
+    <!-- Input Nama -->
+    <input id="w-name" class="wish-input" name="name" type="text" readonly>
+
+
+        <!-- Label Kehadiran -->
+    <div class="label-wish" for="r-attend">Kehadiran :</div>
+
+    <select id="r-attend" name="attend">
+        <option value="" disabled selected>Pilih Kehadiran</option>
+        <option value="hadir">Hadir</option>
+        <option value="tidak">Tidak Hadir</option>
+    </select>
+
+
+    <!-- Label Ucapan -->
+    <div class="label-wish" for="w-note">Ucapan :</div>
+
+    <!-- Textarea -->
+    <textarea id="w-note" class="wish-input" name="note" rows="4" placeholder="Tulis Ucapanmu" style="height: 80px;"></textarea>
+
+    <!-- Tombol Kirim -->
+    <button type="submit" class="kirim-wish">
+        Kirim
+    </button>
+
+</form>
+
+                                
                                     <div id="wishList" class="wish-list"></div>
-                                </div>
+                                
                             </div>
                         </div>
                     </section>
