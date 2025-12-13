@@ -86,24 +86,28 @@ h3,
     letter-spacing: 0.05em;
     color: var(--white-bugis);
     font-family: 'Pinyon Script', cursive;
+    text-shadow: 8px 4px 6px rgb(0 0 0 / 32%);
 }
 
 .text-opening-name {
     font-size: 48px;
     text-transform: uppercase;
     font-weight: bold;
+    text-shadow: 8px 4px 6px rgb(0 0 0 / 32%);
 }
 
 .text-opening-and {
     font-size: 80px;
     line-height: 1;
     font-family: 'Great Vibes', cursive;
+    text-shadow: 8px 4px 6px rgb(0 0 0 / 32%);
 }
 
 .text-opening-date {
     font-size: 25px;
     line-height: 1;
     color: var(--white-bugis);
+    text-shadow: 8px 4px 6px rgb(0 0 0 / 32%);
 
 }
 
@@ -136,7 +140,7 @@ h3,
     justify-content: center;
     cursor: pointer;
     z-index: 9999;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 8px 4px 6px rgb(0 0 0 / 32%);
     transition: all 0.3s ease;
     opacity: 1;
     pointer-events: auto;
@@ -590,6 +594,7 @@ section#rsvp {
 .text-cover-01 {
     font-size: 1rem;
     margin-bottom: .5rem;
+        text-shadow: 4px 4px 6px rgb(0 0 0 / 32%);
 }
 
 .text-cover-02 {
@@ -598,6 +603,7 @@ section#rsvp {
     color: #DE9F4C;
     margin: .3rem 0;
     font-weight: 500;
+        text-shadow: 4px 4px 6px rgb(0 0 0 / 32%);
 
 }
 
@@ -616,6 +622,9 @@ section#rsvp {
     color: #DE9F4C;
     margin: 0.25rem;
     text-align: center;
+    max-width: 220px;
+    line-height: normal;
+        text-shadow: 4px 4px 6px rgb(0 0 0 / 32%);
 }
 
 .buka-undangan {
@@ -636,6 +645,7 @@ section#rsvp {
     width: 100%;
     font-size: 0.85rem;
     font-family: 'Caudex', serif;
+    box-shadow: 4px 4px 6px rgb(0 0 0 / 32%);
 }
 
 #openBtn:hover {
