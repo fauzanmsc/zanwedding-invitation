@@ -700,3 +700,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// FULLSCREEN TOGGLE BUTTON
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+function toggleFullscreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        document.exitFullscreen();
+    }
+}
+
+fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+document.addEventListener('fullscreenchange', () => {
+    if (document.fullscreenElement) {
+        fullscreenBtn.classList.add('active');
+        fullscreenBtn.innerHTML = '⛶'; // exit fullscreen icon
+    } else {
+        fullscreenBtn.classList.remove('active');
+        fullscreenBtn.innerHTML = '⛶'; // fullscreen icon
+    }
+});

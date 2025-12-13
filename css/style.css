@@ -373,10 +373,12 @@ body::-webkit-scrollbar {
             background:#fff0e0;
             color:#707070;
             border:0;
-           
+               font-size: 13px;
+
             margin-bottom:15px;
             font-family:'Cormorant Garamond', serif;
             box-sizing:border-box;
+
 }
 
 .kirim-wish {
@@ -388,6 +390,7 @@ body::-webkit-scrollbar {
             border-radius:30px;
             cursor:pointer;
             background:linear-gradient(to bottom, #CE730B, #810000);
+            font-size: 13px;
 }
 
 section#rsvp {
@@ -609,9 +612,10 @@ section#rsvp {
 
 
 .guest-name {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: #DE9F4C;
     margin: 0.25rem;
+    text-align: center;
 }
 
 .buka-undangan {
@@ -1064,7 +1068,7 @@ textarea:focus {
     border-radius: 18px;
     display:flex;
             align-items:flex-start;
-            gap:5px;
+            gap:0px;
             box-shadow:0 4px 10px rgba(0,0,0,0.06);
 }
 
@@ -1143,8 +1147,10 @@ textarea:focus {
 
 .nama-guest-wish{
     font-weight:700;
-    font-size:14px;
+    font-size:12px;
     color:#2b1e1b;
+    text-align: left;
+    line-height: normal;
 }
 
 .badge-hadir {
@@ -1152,7 +1158,7 @@ textarea:focus {
     color:#2c8a2c;
     padding:3px 10px;
     border-radius:8px;
-    font-size:12px;
+    font-size:10px;
     display:flex;
     align-items:center;
     gap:4px;
@@ -1163,7 +1169,7 @@ textarea:focus {
     color:#c62828;
     padding:3px 10px;
     border-radius:8px;
-    font-size:12px;
+    font-size:10px;
     display:flex;
     align-items:center;
     gap:4px;
@@ -1184,7 +1190,7 @@ textarea:focus {
 
 .wish-text{
 margin-top:3px;
-                font-size:14px;
+                font-size:11px;
                 color:#3a2f2b;
                 line-height:1.4;
                 text-align: left;
@@ -1204,6 +1210,7 @@ display:flex; align-items:center; gap:10px; justify-content: space-between;
             appearance:none;
             cursor:pointer;
             box-sizing:border-box;
+            font-size: 13px;
 }
 
 /* gallery */
@@ -1504,4 +1511,49 @@ display:flex; align-items:center; gap:10px; justify-content: space-between;
     border-radius: 20px;
     font-weight: 600;
     cursor: pointer;
+}
+
+.fullscreen-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+
+    border: none;
+    cursor: pointer;
+
+    background: rgb(255 255 255 / 0%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #222;
+    font-size: 18px;
+    line-height: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+}
+
+.fullscreen-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.fullscreen-btn:active {
+    transform: scale(0.95);
+}
+
+/* Saat fullscreen aktif */
+.fullscreen-btn.active {
+    background: rgb(0 0 0 / 7%);
+    color: #fff;
 }
