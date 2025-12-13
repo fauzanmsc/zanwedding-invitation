@@ -242,28 +242,35 @@ function generateResult() {
         const link = baseUrl + encodedName;
         const waNumber = normalizePhone(wa);
 
-        const caption =
-`Assalamu%E2%80%99alaikum Warahmatullahi Wabarakatuh%0A%0A` +
+      const rawCaption = `
+Assalamu'alaikum Warahmatullahi Wabarakatuh
 
-`Bismillahirrahmanirrahim%0A` +
-`Dengan memohon Ridho serta Rahmat Allah Subhanahu Wa Ta%E2%80%99ala, perkenankan kami mengundang Bapak/Ibu/Saudara(i)%0A%0A` +
+Bismillahirrahmanirrahim
+Dengan memohon Ridho serta Rahmat Allah Subhanahu Wa Ta'ala, perkenankan kami mengundang Bapak/Ibu/Saudara(i)
 
-`Untuk menghadiri acara pernikahan kami:%0A%0A` +
+Untuk menghadiri acara pernikahan kami:
 
-`%F0%9F%93%85%20%20MINGGU%2C%2021%20DESEMBER%202025%0A` +   // 📅
-`%E2%8F%B0%20%20Pukul%2010.00%20Wita%0A` +                 // ⏰
-`%F0%9F%93%8D%20%20Masjid%20To%E2%80%99do%20Lentu%2C%20Desa%20Lentu%2C%20Dusun%20Ta%E2%80%99binjai%2C%20Kec.%20Bontoramba%2C%20Kab.%20Jeneponto%0A%0A` + // 📍
+📅  MINGGU, 21 DESEMBER 2025
+⏰  Pukul 10.00 Wita
+📍  Masjid To'do Lentu, Desa Lentu, Dusun Ta'binjai, Kec. Bontoramba, Kab. Jeneponto
 
-`Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi:%0A` +
-`${encodeURIComponent(link)}%0A%0A` +
+Berikut link undangan kami, untuk info lengkap dari acara bisa kunjungi:
 
-`Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.%0A` +
-`Mohon maaf perihal undangan hanya dibagikan melalui pesan ini.%0A%0A` +
+${link}
 
-`Terima kasih banyak atas perhatiannya.%0A%0A` +
+Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.
+Mohon maaf perihal undangan hanya dibagikan melalui pesan ini.
 
-`Kami yang Berbahagia%0A` +
-`Tullah%20%26%20Eca`;
+Terima kasih banyak atas perhatiannya.
+
+Kami yang Berbahagia
+Tullah & Eca
+`;
+
+
+// AUTO ENCODE → emoji tetap muncul
+const caption = encodeURIComponent(rawCaption);
+
 
 
         const waShare = `https://wa.me/${waNumber}?text=${caption}`;
@@ -290,6 +297,13 @@ function generateResult() {
 // Auto Update Year
     document.getElementById("copyright-text").innerHTML =
         `&copy; ${new Date().getFullYear()} Ozan Creative — All Rights Reserved`;
+
+
+        window.open(
+  `https://wa.me/${phone}?text=${caption}`,
+  "_blank"
+);
+
 </script>
 
 
