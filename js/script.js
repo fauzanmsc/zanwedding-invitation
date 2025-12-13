@@ -10,6 +10,8 @@
   - Gallery preview
   - RSVP + Wishes storage
 */
+let isSubmittingWish = false;
+let lastWishHash = null;
 
 (() => {
     // =============================
@@ -493,30 +495,99 @@ function closeCustomPopup() {
 
 
 // ================== SUBMIT WISH ==================
+// document.getElementById("wishForm")?.addEventListener("submit", async (e) => {
+//     e.preventDefault();
+//     const f = e.target;
+
+//     const formData = new URLSearchParams();
+//     formData.append("action", "wish");
+//     formData.append("name", f.name.value);
+//     formData.append("attend", f.attend.value);
+//     formData.append("note", f.note.value);
+
+//     await fetch(WEB_APP_URL, {
+//         method: "POST",
+//         body: formData
+//     });
+
+//     showCustomPopup("Ucapan berhasil dikirim.");
+
+//     f.reset();
+//     renderWishList();
+// });
+
 document.getElementById("wishForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    // Cegah submit dobel
+    if (isSubmittingWish) return;
+
     const f = e.target;
+    const name   = f.name.value.trim();
+    const attend = f.attend.value;
+    const note   = f.note.value.trim();
 
-    const formData = new URLSearchParams();
-    formData.append("action", "wish");
-    formData.append("name", f.name.value);
-    formData.append("attend", f.attend.value);
-    formData.append("note", f.note.value);
+    // Validasi ringan
+    if (!name || !note) {
+        showCustomPopup("Nama dan ucapan wajib diisi.");
+        return;
+    }
 
-    await fetch(WEB_APP_URL, {
-        method: "POST",
-        body: formData
-    });
+    // Fingerprint sederhana (anti klik dobel)
+    const wishHash = `${name}|${attend}|${note}`;
 
+    if (wishHash === lastWishHash) {
+        showCustomPopup("Ucapan sudah dikirim.");
+        return;
+    }
+
+    isSubmittingWish = true;
+    lastWishHash = wishHash;
+
+    // Disable tombol submit
+    const submitBtn = f.querySelector('button[type="submit"]');
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add("loading");
+    }
+
+    // 🚀 FEEDBACK LANGSUNG (tanpa tunggu server)
     showCustomPopup("Ucapan berhasil dikirim.");
 
+    // Reset form langsung (UX cepat)
     f.reset();
-    renderWishList();
+
+    try {
+        const formData = new URLSearchParams();
+        formData.append("action", "wish");
+        formData.append("name", name);
+        formData.append("attend", attend);
+        formData.append("note", note);
+
+        await fetch(WEB_APP_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        // Refresh list setelah server selesai
+        renderWishList();
+
+    } catch (err) {
+        // Jika gagal, beri tahu user
+        showCustomPopup("Gagal mengirim ucapan.");
+        lastWishHash = null;
+    } finally {
+        isSubmittingWish = false;
+
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("loading");
+        }
+    }
 });
 
 
 
-// ================== LOAD WISH LIST ==================
 // ================== LOAD WISH LIST ==================
 async function loadWishes() {
     const res = await fetch(WEB_APP_URL);
@@ -722,3 +793,4 @@ document.addEventListener('fullscreenchange', () => {
         fullscreenBtn.innerHTML = '⛶'; // fullscreen icon
     }
 });
+

@@ -12,13 +12,17 @@
     --green-gradient: linear-gradient(90deg, #02843A, #0BCE5F);
     --muted: #6b6b6b;
     --frame-w: 400px;
-
 }
 
 * {
     box-sizing: border-box
 }
 
+
+button.loading {
+  opacity: .6;
+  pointer-events: none;
+}
 
 /*FONT */
 
@@ -1161,28 +1165,29 @@ textarea:focus {
     color:#2b1e1b;
     text-align: left;
     line-height: normal;
+    max-width: 170px;
 }
 
 .badge-hadir {
     background:#d4f8d4;
     color:#2c8a2c;
-    padding:3px 10px;
     border-radius:8px;
     font-size:10px;
     display:flex;
     align-items:center;
     gap:4px;
+    padding: 2px 6px;
 }
 
 .badge-tidak {
     background:#ffd6d6;
     color:#c62828;
-    padding:3px 10px;
     border-radius:8px;
     font-size:10px;
     display:flex;
     align-items:center;
     gap:4px;
+    padding: 2px 6px;
 }
 
 .initials-wish-guest {
