@@ -44,16 +44,24 @@ let lastWishHash = null;
     if (guestNameEl) guestNameEl.textContent = guest;
 
     // =============================
-    // LOADER
+    // PAGE LOADER
     // =============================
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            if (loader) loader.classList.add('hide');
-            setTimeout(() => loader.style.display = 'none', 500);
-        }, 2000);
-        tryAutoplay();
+    // window.addEventListener('load', () => {
+    //     setTimeout(() => {
+    //         if (loader) loader.classList.add('hide');
+    //         setTimeout(() => loader.style.display = 'none', 500);
+    //     }, 2000);
+    //     tryAutoplay();
 
-    });
+    // });
+
+    window.addEventListener('load', () => {
+    setTimeout(() => {
+        loader?.classList.add('hide');
+        setTimeout(() => loader.style.display = 'none', 300);
+    }, 500); // max 0.5 detik
+});
+
 
 
 
