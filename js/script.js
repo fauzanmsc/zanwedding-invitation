@@ -597,10 +597,10 @@ document.getElementById("wishForm")?.addEventListener("submit", async (e) => {
 
 
 // ================== LOAD WISH LIST ==================
-async function loadWishes() {
-    const res = await fetch(WEB_APP_URL);
-    return await res.json();
-}
+// async function loadWishes() {
+//     const res = await fetch(WEB_APP_URL);
+//     return await res.json();
+// }
 
 // Ambil 2 initial dari nama
 function getInitials(name) {
